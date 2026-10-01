@@ -1,256 +1,684 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Avijeet Kumar | Deep Learning Researcher & Applied AI Engineer</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Avijeet Kumar | Founder & AI Systems Architect</title>
+  <meta name="description" content="Avijeet Kumar is the Founder of Augmencord Research Studio, creator of augagent (PyPI) and Augmencord-OS. Systems architect specializing in multi-agent orchestration, AI-native desktop IDEs, and industrial computer vision.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              base: '#070b12',
+              surface: '#0d131f',
+              card: '#121a2b',
+              cardHover: '#18243b',
+              border: 'rgba(56, 189, 248, 0.15)',
+              borderHover: 'rgba(56, 189, 248, 0.45)',
+              accent: '#38bdf8',
+              accentGlow: 'rgba(56, 189, 248, 0.25)',
+              emerald: '#34d399',
+              violet: '#818cf8',
+              textPrimary: '#f8fafc',
+              textSecondary: '#94a3b8',
+              textMuted: '#64748b'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+            mono: ['JetBrains Mono', 'Fira Code', 'monospace']
+          },
+          animation: {
+            'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'glow-spin': 'glowSpin 12s linear infinite',
+            'float': 'floatAnim 6s ease-in-out infinite'
+          },
+          keyframes: {
+            glowSpin: {
+              '0%': { transform: 'rotate(0deg)' },
+              '100%': { transform: 'rotate(360deg)' }
+            },
+            floatAnim: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-6px)' }
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Utilities & Glows */
+    ::selection {
+      background: #38bdf8;
+      color: #070b12;
+    }
+    .glass-nav {
+      background: rgba(7, 11, 18, 0.82);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(56, 189, 248, 0.12);
+    }
+    .glass-panel {
+      background: radial-gradient(circle at 20% 20%, rgba(18, 26, 43, 0.85), rgba(13, 19, 31, 0.95));
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(56, 189, 248, 0.14);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .glass-panel:hover {
+      border-color: rgba(56, 189, 248, 0.4);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), 0 0 25px rgba(56, 189, 248, 0.12);
+      transform: translateY(-2px);
+    }
+    .radial-bg-glow {
+      background: 
+        radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.10) 0%, transparent 60%),
+        radial-gradient(circle at 10% 30%, rgba(129, 140, 248, 0.06) 0%, transparent 40%),
+        radial-gradient(circle at 90% 70%, rgba(52, 211, 153, 0.05) 0%, transparent 40%);
+    }
+    .code-grid {
+      background-image: 
+        linear-gradient(rgba(56, 189, 248, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(56, 189, 248, 0.02) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+    .text-gradient {
+      background: linear-gradient(135deg, #ffffff 20%, #7dd3fc 60%, #818cf8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 0.85rem;
+      border-radius: 9999px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      background: rgba(13, 19, 31, 0.8);
+      color: #7dd3fc;
+    }
+  </style>
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-cyan-500 selection:text-white">
 
-    <header class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200 shadow-sm">
-        <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-            <span class="font-bold text-lg tracking-wider text-cyan-600">AVIJEET.AI</span>
-            <nav class="space-x-6 text-sm font-medium hidden md:flex text-slate-600">
-                <a href="#about" class="hover:text-cyan-600 transition">About</a>
-                <a href="#projects" class="hover:text-cyan-600 transition">Projects</a>
-                <a href="#experience" class="hover:text-cyan-600 transition">Experience</a>
-                <a href="#skills" class="hover:text-cyan-600 transition">Skills</a>
-                <a href="#contact" class="hover:text-cyan-600 transition">Contact</a>
-            </nav>
+<body class="bg-brand-base text-brand-textPrimary font-sans antialiased min-h-screen selection:bg-brand-accent selection:text-brand-base relative code-grid">
+
+  <!-- Background Lighting Accents -->
+  <div class="fixed inset-0 pointer-events-none radial-bg-glow -z-10" aria-hidden="true"></div>
+
+  <!-- Sticky Glassmorphic Navbar -->
+  <header class="fixed top-0 left-0 right-0 z-50 glass-nav">
+    <div class="max-w-7xl mx-auto px-6 h-18 py-3 flex items-center justify-between">
+      <a href="#hero" class="flex items-center gap-3 group">
+        <div class="w-9 h-9 rounded-lg bg-brand-surface border border-brand-border flex items-center justify-center text-brand-accent font-mono font-bold text-base shadow-sm group-hover:border-brand-accent group-hover:shadow-[0_0_12px_rgba(56,189,248,0.4)] transition">
+          ⚡
         </div>
-    </header>
+        <div class="flex flex-col">
+          <span class="font-bold text-sm tracking-tight text-white group-hover:text-brand-accent transition">Avijeet Kumar</span>
+          <span class="font-mono text-[10px] text-brand-textMuted tracking-wider">AUGMENCORD</span>
+        </div>
+      </a>
 
-    <section class="min-h-[90vh] flex flex-col items-center justify-center pt-28 pb-16 px-6 bg-gradient-to-b from-white to-slate-100 border-b border-slate-200">
-        <div class="max-w-4xl mx-auto text-center mb-16">
-            <span class="inline-block py-1 px-3 rounded-full bg-cyan-50 text-cyan-700 text-xs font-semibold tracking-wide uppercase mb-4 border border-cyan-200">
-                Deep Learning Researcher & Applied AI Engineer
-            </span>
-            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-slate-900 mb-6">
-                Hi, I'm <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 to-blue-600">Avijeet Kumar</span>
-            </h1>
-            <p class="text-lg md:text-xl text-slate-600 mb-8 max-w-2xl mx-auto leading-relaxed">
-                Specializing in LLM agent orchestration, privacy-first local AI architectures, custom tokenizers, and high-performance deep learning workflows.
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-7 text-xs font-medium text-brand-textSecondary">
+        <a href="#growth" class="hover:text-brand-accent transition">Trajectory</a>
+        <a href="#flagships" class="hover:text-brand-accent transition">Flagships</a>
+        <a href="#research" class="hover:text-brand-accent transition">Research</a>
+        <a href="#provenance" class="hover:text-brand-accent transition">Provenance</a>
+        <a href="#stack" class="hover:text-brand-accent transition">Tech Stack</a>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center gap-3">
+        <a href="https://augmencord.com" target="_blank" rel="noopener" class="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold px-3.5 py-1.5 rounded-full bg-brand-card hover:bg-brand-cardHover border border-brand-border hover:border-brand-accent text-brand-accent transition shadow-sm">
+          <span>Augmencord Studio</span>
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+        </a>
+        <a href="https://github.com/Augmencord" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-xs font-semibold px-3.5 py-1.5 rounded-full bg-brand-accent hover:bg-sky-300 text-brand-base transition shadow-md shadow-brand-accent/20">
+          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          <span>GitHub</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="hero" class="pt-36 pb-20 px-6 max-w-6xl mx-auto text-center md:text-left">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-12">
+      <div class="max-w-3xl">
+        <!-- Credential Badges Ribbon -->
+        <div class="flex flex-wrap items-center justify-center md:justify-start gap-2.5 mb-6">
+          <span class="badge-pill">
+            <span class="w-1.5 h-1.5 rounded-full bg-brand-emerald animate-pulse"></span>
+            🏛️ GOVT. MSME REGISTERED
+          </span>
+          <a href="https://zenodo.org/records/21814348" target="_blank" rel="noopener" class="badge-pill hover:border-brand-accent transition">
+            🎓 ZENODO DOI: 21814348
+          </a>
+          <span class="badge-pill">
+            💻 28 REPOSITORIES SHIPPED
+          </span>
+        </div>
+
+        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white mb-6 leading-[1.08]">
+          Building <span class="text-gradient">Sovereign AI Systems</span>, Native IDEs & Vision CAS.
+        </h1>
+
+        <p class="text-base sm:text-xl text-brand-textSecondary leading-relaxed mb-8 max-w-2xl font-light">
+          Hi, I'm <strong class="text-white font-semibold">Avijeet Kumar</strong> — Founder & Lead Systems Architect at 
+          <span class="text-brand-accent font-medium">Augmencord Research Studio</span>. Creator of 
+          <a href="https://pypi.org/project/augagent/" class="underline decoration-brand-accent underline-offset-4 hover:text-white transition">augagent</a> (PyPI) and 
+          <a href="#flagships" class="underline decoration-brand-accent underline-offset-4 hover:text-white transition">Augmencord-OS</a>. 
+          I engineer deterministic multi-agent operating systems, code editors, and industrial computer vision.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-wrap items-center justify-center md:justify-start gap-4">
+          <a href="#flagships" class="px-6 py-3 rounded-full bg-brand-accent text-brand-base font-semibold text-sm hover:bg-sky-300 transition shadow-lg shadow-brand-accent/25 flex items-center gap-2">
+            <span>Explore Flagship Systems</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+          </a>
+          <a href="https://augmencord.com" target="_blank" rel="noopener" class="px-6 py-3 rounded-full bg-brand-card hover:bg-brand-cardHover border border-brand-border hover:border-brand-accent text-white font-medium text-sm transition flex items-center gap-2">
+            <span>Visit Commercial Studio (augmencord.com)</span>
+            <svg class="w-4 h-4 text-brand-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Quick Telemetry Card -->
+      <div class="w-full md:w-80 glass-panel rounded-2xl p-6 border border-brand-border text-left relative overflow-hidden shrink-0 shadow-2xl">
+        <div class="flex items-center justify-between pb-3 mb-4 border-b border-brand-border/60 text-xs font-mono text-brand-textMuted">
+          <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-brand-emerald animate-ping"></span>HOST TELEMETRY</span>
+          <span class="text-brand-accent">ONLINE</span>
+        </div>
+        <div class="space-y-3 font-mono text-xs">
+          <div class="flex justify-between items-center py-1">
+            <span class="text-brand-textSecondary">TypeScript LOC:</span>
+            <span class="text-white font-bold">554,000+</span>
+          </div>
+          <div class="flex justify-between items-center py-1">
+            <span class="text-brand-textSecondary">Ecosystem Repos:</span>
+            <span class="text-brand-emerald font-bold">28 Active</span>
+          </div>
+          <div class="flex justify-between items-center py-1">
+            <span class="text-brand-textSecondary">PyPI Release:</span>
+            <span class="text-brand-accent font-bold">augagent v1.3.0</span>
+          </div>
+          <div class="flex justify-between items-center py-1">
+            <span class="text-brand-textSecondary">Academic Proof:</span>
+            <span class="text-brand-violet font-bold">Zenodo Peer-Rev</span>
+          </div>
+          <div class="flex justify-between items-center py-1">
+            <span class="text-brand-textSecondary">Execution Target:</span>
+            <span class="text-amber-400 font-bold">0% Data Leakage</span>
+          </div>
+        </div>
+        <div class="mt-4 pt-3 border-t border-brand-border/60 text-[11px] font-mono text-brand-textMuted flex items-center justify-between">
+          <span>Physical Host: 8GB RAM</span>
+          <span class="text-brand-emerald">Optimized ✓</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 1: The Trajectory & Growth Evolution (June 2026 -> October 2026) -->
+  <section id="growth" class="py-20 px-6 max-w-6xl mx-auto">
+    <div class="mb-14 text-center md:text-left">
+      <div class="inline-flex items-center gap-2 font-mono text-xs text-brand-accent tracking-widest uppercase mb-2">
+        <span>// CHRONOLOGICAL ENGINEERING TRAJECTORY</span>
+      </div>
+      <h2 class="text-3xl md:text-4xl font-extrabold text-white tracking-tight">The 4-Month Velocity & Growth</h2>
+      <p class="text-brand-textSecondary text-sm max-w-2xl mt-2 leading-relaxed">
+        From foundational Python prototypes in June 2026 to shipping a 554,000-line enterprise operating system, custom desktop IDE, and industrial mining safety systems by October 2026.
+      </p>
+    </div>
+
+    <!-- Timeline Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-5 gap-4 relative">
+      <!-- Month 1: June 2026 -->
+      <div class="glass-panel p-5 rounded-2xl flex flex-col justify-between border-t-2 border-t-slate-500">
+        <div>
+          <span class="font-mono text-xs text-brand-textMuted font-bold block mb-1">01 · JUNE 2026</span>
+          <h3 class="text-base font-bold text-white mb-2">Genesis & Foundations</h3>
+          <p class="text-xs text-brand-textSecondary leading-relaxed mb-3">
+            Explored standalone Flask web applications, ReAct prompt chains, and logged foundational agent design decisions in architecture blueprints.
+          </p>
+        </div>
+        <div class="text-[11px] font-mono text-brand-accent/80 pt-2 border-t border-brand-border/40">
+          • augmencord-vibepro1<br>
+          • storygen-learning
+        </div>
+      </div>
+
+      <!-- Month 2: July 2026 -->
+      <div class="glass-panel p-5 rounded-2xl flex flex-col justify-between border-t-2 border-t-sky-500">
+        <div>
+          <span class="font-mono text-xs text-brand-accent font-bold block mb-1">02 · JULY 2026</span>
+          <h3 class="text-base font-bold text-white mb-2">Tooling & PyPI Launch</h3>
+          <p class="text-xs text-brand-textSecondary leading-relaxed mb-3">
+            Built and published <code class="text-brand-accent">augagent</code> to PyPI. Engineered automated micro-lesson video compilers using Gemini Flash and Manim.
+          </p>
+        </div>
+        <div class="text-[11px] font-mono text-brand-accent/80 pt-2 border-t border-brand-border/40">
+          • augagent (PyPI v1.0)<br>
+          • cbse-video-generation<br>
+          • helpdesk-ai
+        </div>
+      </div>
+
+      <!-- Month 3: August 2026 -->
+      <div class="glass-panel p-5 rounded-2xl flex flex-col justify-between border-t-2 border-t-emerald-500">
+        <div>
+          <span class="font-mono text-xs text-brand-emerald font-bold block mb-1">03 · AUGUST 2026</span>
+          <h3 class="text-base font-bold text-white mb-2">Industrial Vision & Edge</h3>
+          <p class="text-xs text-brand-textSecondary leading-relaxed mb-3">
+            Engineered HaloCAS for mining vehicle proximity detection (YOLOv8 + DeepFace). Deployed clinical OPD intake systems and fine-tuned Qwen 2.5 Coder.
+          </p>
+        </div>
+        <div class="text-[11px] font-mono text-brand-emerald/80 pt-2 border-t border-brand-border/40">
+          • HaloCAS Mining CAS<br>
+          • hakim-healthcare<br>
+          • qwen_training (Ollama)
+        </div>
+      </div>
+
+      <!-- Month 4: September 2026 -->
+      <div class="glass-panel p-5 rounded-2xl flex flex-col justify-between border-t-2 border-t-indigo-500">
+        <div>
+          <span class="font-mono text-xs text-brand-violet font-bold block mb-1">04 · SEPTEMBER 2026</span>
+          <h3 class="text-base font-bold text-white mb-2">Desktop IDE & Hardening</h3>
+          <p class="text-xs text-brand-textSecondary leading-relaxed mb-3">
+            Architected AugHome IDE (Monaco + Electron + LSP). Hardened HaloCAS with lazy model proxies saving 350MB RAM. Shipped Augmencord HQ Business OS.
+          </p>
+        </div>
+        <div class="text-[11px] font-mono text-brand-violet/80 pt-2 border-t border-brand-border/40">
+          • AugHome IDE<br>
+          • halocas-production<br>
+          • Project_Augmencord (M43)
+        </div>
+      </div>
+
+      <!-- Month 5: October 2026 -->
+      <div class="glass-panel p-5 rounded-2xl flex flex-col justify-between border-t-2 border-t-cyan-400 bg-sky-950/20 shadow-lg shadow-sky-500/10">
+        <div>
+          <span class="font-mono text-xs text-cyan-300 font-bold block mb-1">05 · OCTOBER 2026</span>
+          <h3 class="text-base font-bold text-white mb-2">Augmencord-OS</h3>
+          <p class="text-xs text-brand-textSecondary leading-relaxed mb-3">
+            Culmination into flagship 554,000+ line TypeScript monorepo orchestrating cross-functional agent workforces (CTO, Eng, Business, Research) with Vitest suites.
+          </p>
+        </div>
+        <div class="text-[11px] font-mono text-cyan-300 pt-2 border-t border-brand-border/40 font-bold">
+          • Augmencord-OS (Flagship)<br>
+          • augagent v1.3.0<br>
+          • augmencord.com Portal
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: Flagship Systems Engineering (The "Big 4" Deep Dives) -->
+  <section id="flagships" class="py-20 px-6 max-w-6xl mx-auto">
+    <div class="mb-14 text-center md:text-left">
+      <div class="inline-flex items-center gap-2 font-mono text-xs text-brand-accent tracking-widest uppercase mb-2">
+        <span>// PRODUCTION CODEBASES</span>
+      </div>
+      <h2 class="text-3xl md:text-4xl font-extrabold text-white tracking-tight">The Big 4 Systems Flagships</h2>
+      <p class="text-brand-textSecondary text-sm max-w-2xl mt-2 leading-relaxed">
+        Production-ready architectures engineered for zero data leaks, physical memory limits, and enterprise rigor.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+      <!-- Flagship 1: Augmencord-OS -->
+      <div class="glass-panel rounded-2xl p-7 flex flex-col justify-between relative group border-brand-border/80 hover:border-brand-accent">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="px-2.5 py-1 rounded text-[11px] font-mono font-bold bg-sky-500/10 text-brand-accent border border-sky-500/20">ENTERPRISE OS MONOREPO</span>
+            <span class="text-xs font-mono text-brand-emerald font-semibold">554,000+ LOC TS</span>
+          </div>
+          <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-brand-accent transition">Augmencord-OS</h3>
+          <p class="text-sm text-brand-textSecondary leading-relaxed mb-5">
+            An enterprise-scale AI-assisted operating system monorepo engineered to run and orchestrate cross-functional autonomous AI workforces (CTO, Engineering Lead, Business Strategist, Research Agent) paired with human teams.
+          </p>
+          <ul class="space-y-2 text-xs text-brand-textSecondary mb-6 font-mono">
+            <li class="flex items-center gap-2"><span class="text-brand-emerald">✓</span> <strong>apps/web</strong>: Next.js Presentation Workspace & Studio Dashboard</li>
+            <li class="flex items-center gap-2"><span class="text-brand-emerald">✓</span> <strong>apps/api</strong>: High-throughput Gateway & Route Controller</li>
+            <li class="flex items-center gap-2"><span class="text-brand-emerald">✓</span> <strong>packages/ai-engine</strong>: Sandboxed Zod Tool Engine & Unified LLM Client</li>
+            <li class="flex items-center gap-2"><span class="text-brand-emerald">✓</span> <strong>tests/integration</strong>: End-to-end Vitest vertical slice regression suites</li>
+          </ul>
+        </div>
+        <div class="pt-4 border-t border-brand-border/50 flex items-center justify-between">
+          <div class="flex gap-2">
+            <span class="px-2 py-0.5 rounded bg-brand-surface text-[10px] font-mono text-brand-textMuted border border-brand-border">TypeScript 5.4</span>
+            <span class="px-2 py-0.5 rounded bg-brand-surface text-[10px] font-mono text-brand-textMuted border border-brand-border">Next.js 14</span>
+            <span class="px-2 py-0.5 rounded bg-brand-surface text-[10px] font-mono text-brand-textMuted border border-brand-border">Vitest</span>
+          </div>
+          <a href="https://github.com/Augmencord/Augmencord-OS" target="_blank" rel="noopener" class="text-xs font-semibold text-brand-accent hover:text-white flex items-center gap-1">
+            <span>Inspect Monorepo</span>
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Flagship 2: AugHome IDE -->
+      <div class="glass-panel rounded-2xl p-7 flex flex-col justify-between relative group border-brand-border/80 hover:border-brand-accent">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="px-2.5 py-1 rounded text-[11px] font-mono font-bold bg-violet-500/10 text-brand-violet border border-violet-500/20">AI-NATIVE DESKTOP EDITOR</span>
+            <span class="text-xs font-mono text-brand-accent font-semibold">Electron + Monaco</span>
+          </div>
+          <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-brand-accent transition">AugHome IDE</h3>
+          <p class="text-sm text-brand-textSecondary leading-relaxed mb-5">
+            A modern, extensible desktop code editor built from first principles for deep agent integration. Features an LSP integration bridge, Model Context Protocol (MCP) extensions, and inline agentic code completion.
+          </p>
+          <ul class="space-y-2 text-xs text-brand-textSecondary mb-6 font-mono">
+            <li class="flex items-center gap-2"><span class="text-brand-emerald">✓</span> <strong>Language Server Protocol</strong>: Multi-language LSP subprocess bridge</li>
+            <li class="flex items-center gap-2"><span class="text-brand-emerald">✓</span> <strong>Model Context Protocol (MCP)</strong>: Modular extensibility system</li>
+            <li class="flex items-center gap-2"><span class="text-brand-emerald">✓</span> <strong>Inline Code Completion</strong>: Fill-In-the-Middle (FIM) reasoning</li>
+            <li class="flex items-center gap-2"><span class="text-brand-emerald">✓</span> <strong>Local Execution</strong>: Powered by local <code class="text-brand-accent">augagent</code> daemon</li>
+          </ul>
+        </div>
+        <div class="pt-4 border-t border-brand-border/50 flex items-center justify-between">
+          <div class="flex gap-2">
+            <span class="px-2 py-0.5 rounded bg-brand-surface text-[10px] font-mono text-brand-textMuted border border-brand-border">Electron</span>
+            <span class="px-2 py-0.5 rounded bg-brand-surface text-[10px] font-mono text-brand-textMuted border border-brand-border">Monaco Core</span>
+            <span class="px-2 py-0.5 rounded bg-brand-surface text-[10px] font-mono text-brand-textMuted border border-brand-border">FastAPI</span>
+          </div>
+          <a href="https://github.com/Augmencord/AugHome" target="_blank" rel="noopener" class="text-xs font-semibold text-brand-accent hover:text-white flex items-center gap-1">
+            <span>Explore IDE Engine</span>
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Flagship 3: augagent on PyPI -->
+      <div class="glass-panel rounded-2xl p-7 flex flex-col justify-between relative group border-brand-border/80 hover:border-brand-accent">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="px-2.5 py-1 rounded text-[11px] font-mono font-bold bg-emerald-500/10 text-brand-emerald border border-emerald-500/20">PUBLISHED PYPI PACKAGE</span>
+            <span class="text-xs font-mono text-brand-emerald font-semibold">pip install augagent</span>
+          </div>
+          <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-brand-accent transition">augagent (v1.3.0)</h3>
+          <p class="text-sm text-brand-textSecondary leading-relaxed mb-5">
+            A lightweight, deterministic autonomous ReAct agent framework published to the Python Package Index. Engineered with strict Pydantic 2.0 type safety, ChromaDB vector memory, and zero third-party wrapper bloat.
+          </p>
+          <ul class="space-y-2 text-xs text-brand-textSecondary mb-6 font-mono">
+            <li class="flex items-center gap-2"><span class="text-brand-emerald">✓</span> <strong>Deterministic State Loops</strong>: Pure ReAct task execution with zero drift</li>
+            <li class="flex items-center gap-2"><span class="text-brand-emerald">✓</span> <strong>Type-Safe Schemas</strong>: 100% Pydantic runtime contract validation</li>
+            <li class="flex items-center gap-2"><span class="text-brand-emerald">✓</span> <strong>ChromaDB Integration</strong>: Persistent semantic vector retrieval</li>
+            <li class="flex items-center gap-2"><span class="text-brand-emerald">✓</span> <strong>Native Automation</strong>: Built-in code search and Git operation tools</li>
+          </ul>
+        </div>
+        <div class="pt-4 border-t border-brand-border/50 flex items-center justify-between">
+          <div class="flex gap-2">
+            <span class="px-2 py-0.5 rounded bg-brand-surface text-[10px] font-mono text-brand-textMuted border border-brand-border">Python 3.10+</span>
+            <span class="px-2 py-0.5 rounded bg-brand-surface text-[10px] font-mono text-brand-textMuted border border-brand-border">Pydantic 2.0</span>
+            <span class="px-2 py-0.5 rounded bg-brand-surface text-[10px] font-mono text-brand-textMuted border border-brand-border">ChromaDB</span>
+          </div>
+          <a href="https://pypi.org/project/augagent/" target="_blank" rel="noopener" class="text-xs font-semibold text-brand-accent hover:text-white flex items-center gap-1">
+            <span>View on PyPI</span>
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Flagship 4: HaloCAS (Production) -->
+      <div class="glass-panel rounded-2xl p-7 flex flex-col justify-between relative group border-brand-border/80 hover:border-brand-accent">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="px-2.5 py-1 rounded text-[11px] font-mono font-bold bg-amber-500/10 text-amber-400 border border-amber-500/20">INDUSTRIAL COMPUTER VISION</span>
+            <span class="text-xs font-mono text-brand-accent font-semibold">CAS / PDS Mining</span>
+          </div>
+          <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-brand-accent transition">HaloCAS (Production)</h3>
+          <p class="text-sm text-brand-textSecondary leading-relaxed mb-5">
+            A real-time Collision Avoidance System (CAS) and Proximity Detection System (PDS) engineered for heavy surface and underground mining safety. Combines YOLOv8 machinery tracking with DeepFace biometrics.
+          </p>
+          <ul class="space-y-2 text-xs text-brand-textSecondary mb-6 font-mono">
+            <li class="flex items-center gap-2"><span class="text-brand-emerald">✓</span> <strong>Spatial Proximity Detection</strong>: YOLOv8 neural tracking of workers and vehicles</li>
+            <li class="flex items-center gap-2"><span class="text-brand-emerald">✓</span> <strong>Biometric Verification</strong>: DeepFace (Facenet512) authorized operator recognition</li>
+            <li class="flex items-center gap-2"><span class="text-brand-emerald">✓</span> <strong>Lazy-Proxy Memory Safety</strong>: Eliminates 350MB TensorFlow allocation on import</li>
+            <li class="flex items-center gap-2"><span class="text-brand-emerald">✓</span> <strong>Telemetry Streaming</strong>: Real-time async WebSockets with supervisor alerts</li>
+          </ul>
+        </div>
+        <div class="pt-4 border-t border-brand-border/50 flex items-center justify-between">
+          <div class="flex gap-2">
+            <span class="px-2 py-0.5 rounded bg-brand-surface text-[10px] font-mono text-brand-textMuted border border-brand-border">YOLOv8</span>
+            <span class="px-2 py-0.5 rounded bg-brand-surface text-[10px] font-mono text-brand-textMuted border border-brand-border">DeepFace</span>
+            <span class="px-2 py-0.5 rounded bg-brand-surface text-[10px] font-mono text-brand-textMuted border border-brand-border">WebSockets</span>
+          </div>
+          <a href="https://github.com/Augmencord/halocas-production" target="_blank" rel="noopener" class="text-xs font-semibold text-brand-accent hover:text-white flex items-center gap-1">
+            <span>Inspect CAS Repository</span>
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Section 3: Peer-Reviewed Scientific Research -->
+  <section id="research" class="py-20 px-6 max-w-6xl mx-auto">
+    <div class="glass-panel rounded-3xl p-8 md:p-12 border-brand-border relative overflow-hidden">
+      <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+        <div class="max-w-2xl">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="text-xl">🎓</span>
+            <span class="font-mono text-xs text-brand-accent font-bold tracking-wider uppercase">PEER-REVIEWED PUBLICATION · CERN ZENODO</span>
+          </div>
+          <h2 class="text-2xl md:text-3xl font-extrabold text-white mb-3">
+            "Autonomous AI Systems Architecture"
+          </h2>
+          <p class="text-sm text-brand-textSecondary leading-relaxed mb-6 font-light">
+            Permanent Digital Object Identifier: <strong class="text-white font-mono">10.5281/zenodo.21814348</strong>. Formalizes the theoretical foundations of cognitive state transitions, deterministic schema validation, zero-leak enterprise memory partitioning, and multi-agent coordination frameworks in production environments.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <a href="https://zenodo.org/records/21814348" target="_blank" rel="noopener" class="px-5 py-2.5 rounded-full bg-brand-accent text-brand-base font-semibold text-xs hover:bg-sky-300 transition shadow-md shadow-brand-accent/20 flex items-center gap-2">
+              <span>Read Full Paper on Zenodo (DOI)</span>
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+            <a href="https://github.com/Augmencord" target="_blank" rel="noopener" class="px-5 py-2.5 rounded-full bg-brand-card hover:bg-brand-cardHover border border-brand-border text-white text-xs font-medium transition">
+              <span>View Referenced Implementations</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="w-full md:w-64 bg-brand-base/80 p-5 rounded-xl border border-brand-border/80 font-mono text-xs space-y-2 shrink-0">
+          <div class="text-[11px] text-brand-textMuted uppercase pb-2 border-b border-brand-border/40 font-bold">Citation Summary</div>
+          <div><span class="text-brand-textSecondary">Author:</span> <span class="text-white">Avijeet Kumar</span></div>
+          <div><span class="text-brand-textSecondary">Archive:</span> <span class="text-brand-accent">CERN / Zenodo</span></div>
+          <div><span class="text-brand-textSecondary">DOI:</span> <span class="text-brand-emerald">21814348</span></div>
+          <div><span class="text-brand-textSecondary">Focus:</span> <span class="text-brand-violet">Autonomous Systems</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4: Operational Provenance & Systems Engineering Track Record -->
+  <section id="provenance" class="py-20 px-6 max-w-6xl mx-auto">
+    <div class="mb-14 text-center md:text-left">
+      <div class="inline-flex items-center gap-2 font-mono text-xs text-brand-accent tracking-widest uppercase mb-2">
+        <span>// ROOT CAUSE ANALYSIS & SYSTEMS BACKGROUND</span>
+      </div>
+      <h2 class="text-3xl md:text-4xl font-extrabold text-white tracking-tight">Operational & Engineering Provenance</h2>
+      <p class="text-brand-textSecondary text-sm max-w-2xl mt-2 leading-relaxed">
+        Real systems competence is forged by understanding human friction before writing automated state loops.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+      <!-- Cuemath Operations -->
+      <div class="glass-panel p-6 rounded-2xl border-brand-border">
+        <div class="flex items-center justify-between mb-2">
+          <h3 class="text-lg font-bold text-white">Teacher Captain (Operations Manager)</h3>
+          <span class="text-xs font-mono text-brand-textMuted">2022</span>
+        </div>
+        <p class="text-xs font-semibold text-brand-accent mb-3">Cuemath (Cue Learn Pvt Ltd)</p>
+        <p class="text-xs text-brand-textSecondary leading-relaxed mb-4">
+          Directed operations and session quality audits for Cuemath Plus pilot international tutors. Performed continuous <strong>Root Cause Analysis (RCA)</strong> on customer churn cases, mapping user churn triggers directly to training interventions across two international teams (40 tutors).
+        </p>
+        <div class="text-[11px] font-mono text-brand-emerald">Key Impact: Data-driven churn diagnosis & tutor performance scaling.</div>
+      </div>
+
+      <!-- Tripyog -->
+      <div class="glass-panel p-6 rounded-2xl border-brand-border">
+        <div class="flex items-center justify-between mb-2">
+          <h3 class="text-lg font-bold text-white">Deep Learning Researcher & Talent Lead</h3>
+          <span class="text-xs font-mono text-brand-textMuted">2023 – 2025</span>
+        </div>
+        <p class="text-xs font-semibold text-brand-accent mb-3">Tripyog</p>
+        <p class="text-xs text-brand-textSecondary leading-relaxed mb-4">
+          Engineered conversational AI assistant prototypes for customer inquiry resolution. Led technical and business talent acquisition drives virtually and on-campus at <strong>IIM Ranchi</strong>, screening over 200 candidates.
+        </p>
+        <div class="text-[11px] font-mono text-brand-emerald">Key Impact: Conversational AI prompt loops & talent pipeline scaling.</div>
+      </div>
+
+      <!-- Stayqrious -->
+      <div class="glass-panel p-6 rounded-2xl border-brand-border">
+        <div class="flex items-center justify-between mb-2">
+          <h3 class="text-lg font-bold text-white">Senior Learning Coach (Team Lead)</h3>
+          <span class="text-xs font-mono text-brand-textMuted">2021 – 2022</span>
+        </div>
+        <p class="text-xs font-semibold text-brand-accent mb-3">Stayqrious India Pvt Ltd</p>
+        <p class="text-xs text-brand-textSecondary leading-relaxed mb-4">
+          Led a high-performing cohort of 8 learning coaches; managed stand-ups, weekly business updates (BAU), and one-on-one evaluations. Partnered directly with the Head of Classroom Programs to align instructional goals.
+        </p>
+        <div class="text-[11px] font-mono text-brand-emerald">Key Impact: Agile team management & cohort quality governance.</div>
+      </div>
+
+      <!-- Wipro -->
+      <div class="glass-panel p-6 rounded-2xl border-brand-border">
+        <div class="flex items-center justify-between mb-2">
+          <h3 class="text-lg font-bold text-white">Associate (L1 Escalations & Network Support)</h3>
+          <span class="text-xs font-mono text-brand-textMuted">2016 – 2017</span>
+        </div>
+        <p class="text-xs font-semibold text-brand-accent mb-3">Wipro</p>
+        <p class="text-xs text-brand-textSecondary leading-relaxed mb-4">
+          Supported UK enterprise client engineers resolving email, broadband, and network security incidents via BMC Remedy ticketing workflows. Delivered technical briefings for fiber optics conversions.
+        </p>
+        <div class="text-[11px] font-mono text-brand-emerald">Key Impact: Enterprise SLA triage & network infrastructure incident handling.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Section 5: Core Tech Stack & Education -->
+  <section id="stack" class="py-20 px-6 max-w-6xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+      <!-- Technical Stack Matrix (2 cols) -->
+      <div class="md:col-span-2 glass-panel p-8 rounded-3xl border-brand-border">
+        <h2 class="text-2xl font-bold text-white mb-6">Core Engineering Matrix</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 text-xs">
+          <div>
+            <h4 class="font-mono font-bold text-brand-accent uppercase mb-2">Systems & Languages</h4>
+            <p class="text-brand-textSecondary leading-relaxed">
+              TypeScript (5.4+), Python (3.10–3.12), JavaScript (ESNext), Rust, Dart, Shell, PowerShell, SQL
             </p>
-            <div class="flex flex-wrap justify-center gap-4">
-                <a href="#projects" class="bg-cyan-600 hover:bg-cyan-700 text-white font-medium px-6 py-3 rounded-lg transition shadow-md shadow-cyan-600/20">Explore Projects</a>
-                <a href="https://github.com/Augmencord" target="_blank" class="bg-white hover:bg-slate-50 border border-slate-300 text-slate-700 font-medium px-6 py-3 rounded-lg transition shadow-sm">GitHub Profile</a>
-            </div>
+          </div>
+          <div>
+            <h4 class="font-mono font-bold text-brand-accent uppercase mb-2">Agentic Frameworks & Protocols</h4>
+            <p class="text-brand-textSecondary leading-relaxed">
+              Autonomous ReAct, Model Context Protocol (MCP), Language Server Protocol (LSP), Pydantic 2.0, Zod, FIM Completion
+            </p>
+          </div>
+          <div>
+            <h4 class="font-mono font-bold text-brand-accent uppercase mb-2">Computer Vision & AI/ML</h4>
+            <p class="text-brand-textSecondary leading-relaxed">
+              YOLOv8, DeepFace (Facenet512), PyTorch, Hugging Face Transformers, Ollama (Qwen 2.5 Coder 7B), ChromaDB
+            </p>
+          </div>
+          <div>
+            <h4 class="font-mono font-bold text-brand-accent uppercase mb-2">Fullstack, Desktop & DevOps</h4>
+            <p class="text-brand-textSecondary leading-relaxed">
+              Next.js 14, Electron, Monaco Editor, FastAPI, NestJS, Docker, Alembic, PostgreSQL, Vitest, WebSockets
+            </p>
+          </div>
         </div>
+      </div>
 
-        <div class="max-w-6xl w-full mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 px-4">
-            <a href="https://zenodo.org/records/21814348" target="_blank" class="bg-gradient-to-br from-cyan-50 to-white border-2 border-cyan-400 rounded-xl p-5 shadow-md hover:shadow-xl hover:scale-[1.03] transition-all duration-300 text-left group block relative overflow-hidden">
-                <div class="absolute -right-4 -top-4 w-16 h-16 bg-cyan-400/10 rounded-full blur-xl group-hover:bg-cyan-400/20 transition-all"></div>
-                <div class="w-8 h-8 rounded-lg bg-cyan-100 flex items-center justify-center text-cyan-700 font-bold mb-3 border border-cyan-200 shadow-sm z-10 relative">🎓</div>
-                <div class="flex items-center justify-between mb-1 z-10 relative">
-                    <h3 class="font-bold text-slate-900 group-hover:text-cyan-700 transition">Published Research</h3>
-                    <span class="text-[10px] bg-cyan-600 text-white px-2 py-0.5 rounded shadow-sm font-bold animate-pulse">Zenodo</span>
-                </div>
-                <p class="text-xs text-slate-700 leading-relaxed font-medium z-10 relative">Autonomous AI Systems Architecture. Peer-reviewed & available via DOI.</p>
-            </a>
-
-            <div class="bg-white border border-slate-200/80 rounded-xl p-5 shadow-sm hover:shadow-md transition text-left">
-                <div class="w-8 h-8 rounded-lg bg-cyan-50 flex items-center justify-center text-cyan-600 font-bold mb-3 border border-cyan-100">AI</div>
-                <h3 class="font-bold text-slate-900 mb-1">Core Focus</h3>
-                <p class="text-xs text-slate-600 leading-relaxed">Active research into Stable Diffusion, Language Modeling, and autonomous AI agents.</p>
+      <!-- Education & Academic Foundation (1 col) -->
+      <div class="glass-panel p-8 rounded-3xl border-brand-border flex flex-col justify-between">
+        <div>
+          <h2 class="text-2xl font-bold text-white mb-6">Education</h2>
+          <div class="space-y-5 text-xs">
+            <div class="pb-4 border-b border-brand-border/50">
+              <span class="font-mono text-brand-textMuted">2012 – 2016</span>
+              <h4 class="text-sm font-bold text-white mt-1">Dr. B.C. Roy Engineering College</h4>
+              <p class="text-brand-textSecondary">B.Tech / Equivalent — CGPA: <strong>7.75 / 10.0</strong> (WBUT)</p>
             </div>
-
-            <a href="https://pypi.org/project/augagent/" target="_blank" class="bg-white border border-cyan-200 rounded-xl p-5 shadow-sm hover:border-cyan-400 hover:shadow-md transition text-left group block">
-                <div class="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600 font-bold mb-3 border border-blue-100 group-hover:bg-cyan-600 group-hover:text-white transition">📦</div>
-                <div class="flex items-center justify-between mb-1">
-                    <h3 class="font-bold text-slate-900 group-hover:text-cyan-700 transition">PyPI Package</h3>
-                    <span class="text-[10px] bg-cyan-50 text-cyan-700 px-2 py-0.5 rounded border border-cyan-200 font-medium">pip install</span>
-                </div>
-                <p class="text-xs text-slate-600 leading-relaxed">Creator & maintainer of <code class="text-cyan-700 font-semibold">augagent</code>, a Pydantic-powered multi-agent framework.</p>
-            </a>
-
-            <a href="https://augmencord.blogspot.com/" target="_blank" class="bg-white border border-cyan-200 rounded-xl p-5 shadow-sm hover:border-cyan-400 hover:shadow-md transition text-left group block">
-                <div class="w-8 h-8 rounded-lg bg-purple-50 flex items-center justify-center text-purple-600 font-bold mb-3 border border-purple-100 group-hover:bg-cyan-600 group-hover:text-white transition">💬</div>
-                <div class="flex items-center justify-between mb-1">
-                    <h3 class="font-bold text-slate-900 group-hover:text-cyan-700 transition">Blog</h3>
-                    <span class="text-[10px] bg-cyan-50 text-cyan-700 px-2 py-0.5 rounded border border-cyan-200 font-medium">blogspot</span>
-                </div>
-                <p class="text-xs text-slate-600 leading-relaxed">Active publishing on blogspot for insights about AppliedAI.</p>
-            </a>
-        </div>
-    </section>
-
-    <section id="projects" class="py-20 px-6 max-w-6xl mx-auto">
-        <div class="mb-12 text-center md:text-left">
-            <h2 class="text-3xl font-bold tracking-tight text-slate-900 mb-2">Featured Projects</h2>
-            <p class="text-slate-600">Production-ready packages, frameworks, and pipelines built and maintained independently.</p>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-8">
-            <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm hover:shadow-md transition">
-                <div class="flex justify-between items-start mb-4">
-                    <h3 class="text-xl font-bold text-cyan-700">augagent (PyPI Package)</h3>
-                    <span class="text-xs bg-cyan-50 text-cyan-700 px-2.5 py-1 rounded-full border border-cyan-200 font-medium">Active Package</span>
-                </div>
-                <p class="text-slate-600 text-sm mb-4 leading-relaxed">
-                    Lightweight, Pydantic-powered multi-agent AI framework for sequential task orchestration. Engineered for zero-data-leakage enterprise execution via local hardware.
-                </p>
-                <div class="flex flex-wrap gap-2 text-xs font-medium text-slate-600 mb-4">
-                    <span class="bg-slate-100 px-2.5 py-1 rounded border border-slate-200">Python</span>
-                    <span class="bg-slate-100 px-2.5 py-1 rounded border border-slate-200">Pydantic</span>
-                    <span class="bg-slate-100 px-2.5 py-1 rounded border border-slate-200">Ollama</span>
-                </div>
-                <a href="https://pypi.org/project/augagent/" target="_blank" class="text-xs font-semibold text-cyan-600 hover:text-cyan-800 flex items-center gap-1">View on PyPI &rarr;</a>
-            </div>
-
-            <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm hover:shadow-md transition">
-                <div class="flex justify-between items-start mb-4">
-                    <h3 class="text-xl font-bold text-cyan-700">Intelligent Video Generation Platform</h3>
-                    <span class="text-xs bg-blue-50 text-blue-700 px-2.5 py-1 rounded-full border border-blue-200 font-medium">Cloud Scaled</span>
-                </div>
-                <p class="text-slate-600 text-sm mb-4 leading-relaxed">
-                    Automated CBSE educational video compiler generating micro-lessons under 3 minutes using Gemini 2.5 Flash, Manim, and FastAPI with CDN-backed cloud distribution.
-                </p>
-                <div class="flex flex-wrap gap-2 text-xs font-medium text-slate-600 mb-4">
-                    <span class="bg-slate-100 px-2.5 py-1 rounded border border-slate-200">FastAPI</span>
-                    <span class="bg-slate-100 px-2.5 py-1 rounded border border-slate-200">Gemini API</span>
-                    <span class="bg-slate-100 px-2.5 py-1 rounded border border-slate-200">Manim</span>
-                </div>
-                <a href="https://augmencord.blogspot.com/2026/07/intelligent-video-generation-platform.html" target="_blank" class="text-xs font-semibold text-cyan-600 hover:text-cyan-800 flex items-center gap-1">View on Blogspot &rarr;</a>
-            </div>
-
-            <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm hover:shadow-md transition">
-                <div class="flex justify-between items-start mb-4">
-                    <h3 class="text-xl font-bold text-cyan-700">AugSplit Tokenization Engine</h3>
-                    <span class="text-xs bg-purple-50 text-purple-700 px-2.5 py-1 rounded-full border border-purple-200 font-medium">High Performance</span>
-                </div>
-                <p class="text-slate-600 text-sm mb-4 leading-relaxed">
-                    Custom Byte-Pair Encoding (BPE) tokenizer re-architected into a high-performance Rust-backed pipeline using Hugging Face libraries for fast model training.
-                </p>
-                <div class="flex flex-wrap gap-2 text-xs font-medium text-slate-600 mb-4">
-                    <span class="bg-slate-100 px-2.5 py-1 rounded border border-slate-200">Rust</span>
-                    <span class="bg-slate-100 px-2.5 py-1 rounded border border-slate-200">Hugging Face</span>
-                    <span class="bg-slate-100 px-2.5 py-1 rounded border border-slate-200">BPE</span>
-                </div>
-                <a href="https://augmencord.blogspot.com/2026/06/augsplit-teaching-ai-how-to-read-and.html" target="_blank" class="text-xs font-semibold text-cyan-600 hover:text-cyan-800 flex items-center gap-1">View on Blogspot &rarr;</a>
-            </div>
-
-            <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm hover:shadow-md transition">
-                <div class="flex justify-between items-start mb-4">
-                    <h3 class="text-xl font-bold text-cyan-700">CSV to Conversation Analyst</h3>
-                    <span class="text-xs bg-emerald-50 text-emerald-700 px-2.5 py-1 rounded-full border border-emerald-200 font-medium">Data Automation</span>
-                </div>
-                <p class="text-slate-600 text-sm mb-4 leading-relaxed">
-                    Data pipeline leveraging Python, pandas, and Gemini AI to extract structured records, compute baseline metrics, and generate accessible plain-English insights.
-                </p>
-                <div class="flex flex-wrap gap-2 text-xs font-medium text-slate-600 mb-4">
-                    <span class="bg-slate-100 px-2.5 py-1 rounded border border-slate-200">Python</span>
-                    <span class="bg-slate-100 px-2.5 py-1 rounded border border-slate-200">Pandas</span>
-                    <span class="bg-slate-100 px-2.5 py-1 rounded border border-slate-200">Gemini AI</span>
-                </div>
-                <a href="https://augmencord.blogspot.com/2026/07/how-to-create-your-own-csv-to.html" target="_blank" class="text-xs font-semibold text-cyan-600 hover:text-cyan-800 flex items-center gap-1">View on Blogspot &rarr;</a>
-            </div>
-        </div>
-    </section>
-
-    <section id="experience" class="py-20 px-6 max-w-6xl mx-auto bg-slate-100/60 rounded-3xl my-8 border border-slate-200/80">
-        <div class="mb-12 text-center md:text-left px-4">
-            <h2 class="text-3xl font-bold tracking-tight text-slate-900 mb-2">Professional Experience & Applied Research</h2>
-            <p class="text-slate-600">A track record spanning applied AI engineering, deep learning research, and technical operations.</p>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-6 px-4">
-            <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
-                <span class="text-xs font-semibold text-cyan-600 uppercase tracking-wider">Present</span>
-                <h3 class="text-lg font-bold text-slate-900 mt-1">Creator & Lead Maintainer</h3>
-                <p class="text-sm font-medium text-slate-500 mb-3">augagent (Python Package)</p>
-                <p class="text-sm text-slate-600 leading-relaxed">
-                    Architected and published a lightweight, Pydantic-powered multi-agent AI framework to PyPI for sequential task orchestration. Engineered workflows enabling seamless state transfers between local LLMs (Qwen 8B/7B via Ollama) and standard API backends with strict type-safety.
-                </p>
-            </div>
-
-            <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
-                <span class="text-xs font-semibold text-cyan-600 uppercase tracking-wider">May 2025 - Present</span>
-                <h3 class="text-lg font-bold text-slate-900 mt-1">Independent Research & Content Creation</h3>
-                <p class="text-sm font-medium text-slate-500 mb-3">AI Platforms & Pipelines</p>
-                <p class="text-sm text-slate-600 leading-relaxed">
-                    Designed an automated CBSE educational video compiler using Gemini 2.5 Flash, Manim, and FastAPI scaled via a CDN. Developed a Rust-backed BPE tokenizer (AugSplit) and CSV-to-conversation data automation pipelines using Gemini AI and pandas.
-                </p>
-            </div>
-
-            <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
-                <span class="text-xs font-semibold text-cyan-600 uppercase tracking-wider">2023 - 2025</span>
-                <h3 class="text-lg font-bold text-slate-900 mt-1">Deep Learning Researcher and Recruiter</h3>
-                <p class="text-sm font-medium text-slate-500 mb-3">Tripyog</p>
-                <p class="text-sm text-slate-600 leading-relaxed">
-                    Working on the development of a conversational AI assistant. Handled the recruitment process for hiring sales and marketing interns virtually and at IIM Ranchi's campus. Handled poster and travel video development for Tripyog's social media.
-                </p>
-            </div>
-
-            <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
-                <span class="text-xs font-semibold text-cyan-600 uppercase tracking-wider">2022</span>
-                <h3 class="text-lg font-bold text-slate-900 mt-1">Teacher Captain (Teacher Manager)</h3>
-                <p class="text-sm font-medium text-slate-500 mb-3">Cuemath (Cue Learn Pvt Ltd)</p>
-                <p class="text-sm text-slate-600 leading-relaxed">
-                    Managed the operation of Cuemath international tutors, their customer interaction and session observation for Cuemath plus pilot. Did RCA (Root Cause Analysis) for churn customer cases. Handled training and upgrade of two teams (20 tutors each).
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <section id="skills" class="py-20 px-6 max-w-6xl mx-auto">
-        <div class="grid md:grid-cols-2 gap-12">
             <div>
-                <h2 class="text-2xl font-bold text-slate-900 mb-6">Core Tech Stack</h2>
-                <div class="grid grid-cols-2 gap-4">
-                    <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
-                        <h4 class="font-bold text-sm text-cyan-700 mb-1">Languages</h4>
-                        <p class="text-xs text-slate-600">Python, Rust, Shell, Command Line</p>
-                    </div>
-                    <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
-                        <h4 class="font-bold text-sm text-cyan-700 mb-1">AI / ML Frameworks</h4>
-                        <p class="text-xs text-slate-600">PyTorch, fastai, Hugging Face, Ollama</p>
-                    </div>
-                    <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
-                        <h4 class="font-bold text-sm text-cyan-700 mb-1">Backend & Tooling</h4>
-                        <p class="text-xs text-slate-600">FastAPI, Pandas, Git, Google Colab, Anaconda</p>
-                    </div>
-                    <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
-                        <h4 class="font-bold text-sm text-cyan-700 mb-1">Specialized Focus</h4>
-                        <p class="text-xs text-slate-600">Multi-Agent Systems, Stable Diffusion, Tokenization</p>
-                    </div>
-                </div>
+              <span class="font-mono text-brand-textMuted">2012</span>
+              <h4 class="text-sm font-bold text-white mt-1">DAV Public School, Koyla Nagar</h4>
+              <p class="text-brand-textSecondary">AISSCE High Secondary — Score: <strong>93.20 / 100</strong></p>
             </div>
-
-            <div>
-                <h2 class="text-2xl font-bold text-slate-900 mb-6">Education</h2>
-                <div class="space-y-4">
-                    <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
-                        <div class="flex justify-between items-center mb-1">
-                            <h4 class="font-bold text-sm text-slate-900">Dr B C Roy Engineering College, WB</h4>
-                            <span class="text-xs text-slate-500">2012–2016</span>
-                        </div>
-                        <p class="text-xs text-slate-600">B.Tech / Equivalent — CGPA: 7.75/10 (WBUT)</p>
-                    </div>
-                    <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
-                        <div class="flex justify-between items-center mb-1">
-                            <h4 class="font-bold text-sm text-slate-900">DAV Public School, Koyla Nagar, Dhanbad</h4>
-                            <span class="text-xs text-slate-500">2012</span>
-                        </div>
-                        <p class="text-xs text-slate-600">AISSCE — Score: 93.20/100</p>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
-    </section>
-
-    <footer id="contact" class="border-t border-slate-200 py-12 px-6 bg-white text-center">
-        <h2 class="text-2xl font-bold text-slate-900 mb-2">Let's Connect</h2>
-        <p class="text-slate-600 mb-6">Open to deep learning research collaborations and applied AI engineering roles.</p>
-        <div class="flex flex-wrap justify-center gap-6 text-sm font-medium text-cyan-600 mb-8">
-            <a href="mailto:augmencord@gmail.com" class="hover:underline">augmencord@gmail.com</a>
-            <a href="https://github.com/Augmencord" target="_blank" class="hover:underline">GitHub</a>
-            <a href="https://huggingface.co/augmencord" target="_blank" class="hover:underline">Hugging Face</a>
-            <a href="https://pypi.org/project/augagent/" target="_blank" class="hover:underline">PyPI (augagent)</a>
-            <a href="https://augmencord.blogspot.com" target="_blank" class="hover:underline">Blog</a>
+        <div class="pt-4 mt-6 border-t border-brand-border/50 text-[11px] font-mono text-brand-textMuted">
+          Entity: Augmencord Research Studio (Udyam MSME)
         </div>
-        <p class="text-xs text-slate-400">&copy; 2026 Avijeet Kumar. Built with GitHub Pages.</p>
-    </footer>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Section 6: Connect / Terminal Footer -->
+  <footer id="contact" class="py-20 px-6 border-t border-brand-border bg-brand-surface/60 relative">
+    <div class="max-w-5xl mx-auto text-center">
+      <div class="inline-flex items-center gap-2 badge-pill mb-4">
+        <span class="w-2 h-2 rounded-full bg-brand-emerald animate-ping"></span>
+        <span>OPEN FOR STRATEGIC RESEARCH & SYSTEMS COLLABORATION</span>
+      </div>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-4">Let's Build Autonomous Systems</h2>
+      <p class="text-brand-textSecondary text-sm max-w-xl mx-auto mb-8 font-light leading-relaxed">
+        Whether you're exploring sovereign multi-agent infrastructure, AI-native desktop software, or production computer vision, let's connect.
+      </p>
+
+      <!-- Contact Matrix -->
+      <div class="flex flex-wrap items-center justify-center gap-4 text-xs font-mono mb-12">
+        <a href="mailto:augmencord@gmail.com" class="px-4 py-2 rounded-lg bg-brand-card hover:bg-brand-cardHover border border-brand-border text-brand-accent transition">
+          augmencord@gmail.com
+        </a>
+        <a href="https://augmencord.com" target="_blank" rel="noopener" class="px-4 py-2 rounded-lg bg-brand-card hover:bg-brand-cardHover border border-brand-border text-white transition">
+          augmencord.com ↗
+        </a>
+        <a href="https://github.com/Augmencord" target="_blank" rel="noopener" class="px-4 py-2 rounded-lg bg-brand-card hover:bg-brand-cardHover border border-brand-border text-white transition">
+          GitHub (28 Repos) ↗
+        </a>
+        <a href="https://pypi.org/project/augagent/" target="_blank" rel="noopener" class="px-4 py-2 rounded-lg bg-brand-card hover:bg-brand-cardHover border border-brand-border text-brand-emerald transition">
+          PyPI (augagent) ↗
+        </a>
+        <a href="https://zenodo.org/records/21814348" target="_blank" rel="noopener" class="px-4 py-2 rounded-lg bg-brand-card hover:bg-brand-cardHover border border-brand-border text-brand-violet transition">
+          Zenodo DOI ↗
+        </a>
+        <a href="https://www.linkedin.com/in/avijeet-kumar-985660429/" target="_blank" rel="noopener" class="px-4 py-2 rounded-lg bg-brand-card hover:bg-brand-cardHover border border-brand-border text-sky-400 transition">
+          LinkedIn ↗
+        </a>
+      </div>
+
+      <div class="text-xs text-brand-textMuted font-mono">
+        © 2026 Avijeet Kumar · Augmencord Research Studio (Govt. of India Registered MSME).<br>
+        Built with modern web standards. Hosted on GitHub Pages.
+      </div>
+    </div>
+  </footer>
 
 </body>
 </html>
