@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth dark">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,44 +16,30 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
-      darkMode: 'class',
       theme: {
         extend: {
           colors: {
-            brand: {
-              base: '#070b12',
-              surface: '#0d131f',
-              card: '#121a2b',
-              cardHover: '#18243b',
-              border: 'rgba(56, 189, 248, 0.15)',
-              borderHover: 'rgba(56, 189, 248, 0.45)',
-              accent: '#38bdf8',
-              accentGlow: 'rgba(56, 189, 248, 0.25)',
-              emerald: '#34d399',
-              violet: '#818cf8',
-              textPrimary: '#f8fafc',
-              textSecondary: '#94a3b8',
-              textMuted: '#64748b'
+            paper: {
+              base: '#fbfbfa',
+              surface: '#ffffff',
+              card: '#ffffff',
+              cardMuted: '#f5f5f3',
+              border: '#e7e7e4',
+              borderHover: '#a1a1aa',
+              ink: '#121214',
+              inkSecondary: '#52525b',
+              inkMuted: '#71717a',
+              cobalt: '#1d4ed8',
+              cobaltLight: '#eff6ff',
+              emerald: '#059669',
+              emeraldLight: '#ecfdf5',
+              amber: '#b45309',
+              amberLight: '#fffbeb'
             }
           },
           fontFamily: {
             sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
             mono: ['JetBrains Mono', 'Fira Code', 'monospace']
-          },
-          animation: {
-            'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-            'glow-spin': 'glowSpin 12s linear infinite',
-            'float': 'floatAnim 6s ease-in-out infinite'
-          },
-          keyframes: {
-            glowSpin: {
-              '0%': { transform: 'rotate(0deg)' },
-              '100%': { transform: 'rotate(360deg)' }
-            },
-            floatAnim: {
-              '0%, 100%': { transform: 'translateY(0)' },
-              '50%': { transform: 'translateY(-6px)' }
-            }
           }
         }
       }
@@ -61,96 +47,85 @@
   </script>
 
   <style>
-    /* Custom Utilities & Glows */
+    /* Nordic Minimalist Paper Styling */
     ::selection {
-      background: #38bdf8;
-      color: #070b12;
+      background: #1d4ed8;
+      color: #ffffff;
+    }
+    body {
+      background-color: #fbfbfa;
+      color: #121214;
+    }
+    .paper-grid {
+      background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.025) 1px, transparent 1px);
+      background-size: 32px 32px;
     }
     .glass-nav {
-      background: rgba(7, 11, 18, 0.82);
+      background: rgba(251, 251, 250, 0.88);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(56, 189, 248, 0.12);
+      border-bottom: 1px solid #e7e7e4;
     }
-    .glass-panel {
-      background: radial-gradient(circle at 20% 20%, rgba(18, 26, 43, 0.85), rgba(13, 19, 31, 0.95));
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border: 1px solid rgba(56, 189, 248, 0.14);
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    .paper-card {
+      background: #ffffff;
+      border: 1px solid #e7e7e4;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02), 0 4px 12px rgba(0, 0, 0, 0.02);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .glass-panel:hover {
-      border-color: rgba(56, 189, 248, 0.4);
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), 0 0 25px rgba(56, 189, 248, 0.12);
+    .paper-card:hover {
+      border-color: #a1a1aa;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
       transform: translateY(-2px);
     }
-    .radial-bg-glow {
-      background: 
-        radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.10) 0%, transparent 60%),
-        radial-gradient(circle at 10% 30%, rgba(129, 140, 248, 0.06) 0%, transparent 40%),
-        radial-gradient(circle at 90% 70%, rgba(52, 211, 153, 0.05) 0%, transparent 40%);
-    }
-    .code-grid {
-      background-image: 
-        linear-gradient(rgba(56, 189, 248, 0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(56, 189, 248, 0.02) 1px, transparent 1px);
-      background-size: 40px 40px;
-    }
-    .text-gradient {
-      background: linear-gradient(135deg, #ffffff 20%, #7dd3fc 60%, #818cf8 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .badge-pill {
+    .badge-tag {
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
-      padding: 0.35rem 0.85rem;
+      gap: 0.4rem;
+      padding: 0.3rem 0.75rem;
       border-radius: 9999px;
       font-size: 0.72rem;
       font-weight: 600;
-      letter-spacing: 0.05em;
-      border: 1px solid rgba(56, 189, 248, 0.25);
-      background: rgba(13, 19, 31, 0.8);
-      color: #7dd3fc;
+      letter-spacing: 0.03em;
+      border: 1px solid #e7e7e4;
+      background: #f5f5f3;
+      color: #27272a;
     }
   </style>
 </head>
 
-<body class="bg-brand-base text-brand-textPrimary font-sans antialiased min-h-screen selection:bg-brand-accent selection:text-brand-base relative code-grid">
+<body class="bg-paper-base text-paper-ink font-sans antialiased min-h-screen relative paper-grid">
 
-  <!-- Background Lighting Accents -->
-  <div class="fixed inset-0 pointer-events-none radial-bg-glow -z-10" aria-hidden="true"></div>
-
-  <!-- Sticky Glassmorphic Navbar -->
+  <!-- Sticky Frosted Paper Navbar -->
   <header class="fixed top-0 left-0 right-0 z-50 glass-nav">
-    <div class="max-w-7xl mx-auto px-6 h-18 py-3 flex items-center justify-between">
+    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
       <a href="#hero" class="flex items-center gap-3 group">
-        <div class="w-9 h-9 rounded-lg bg-brand-surface border border-brand-border flex items-center justify-center text-brand-accent font-mono font-bold text-base shadow-sm group-hover:border-brand-accent group-hover:shadow-[0_0_12px_rgba(56,189,248,0.4)] transition">
-          ⚡
+        <div class="w-8 h-8 rounded-lg bg-paper-ink text-white font-mono font-bold text-sm flex items-center justify-center shadow-sm">
+          AK
         </div>
         <div class="flex flex-col">
-          <span class="font-bold text-sm tracking-tight text-white group-hover:text-brand-accent transition">Avijeet Kumar</span>
-          <span class="font-mono text-[10px] text-brand-textMuted tracking-wider">AUGMENCORD</span>
+          <span class="font-bold text-sm tracking-tight text-paper-ink">Avijeet Kumar</span>
+          <span class="font-mono text-[10px] text-paper-inkMuted tracking-wider uppercase">Augmencord</span>
         </div>
       </a>
 
       <!-- Desktop Nav -->
-      <nav class="hidden md:flex items-center gap-7 text-xs font-medium text-brand-textSecondary">
-        <a href="#growth" class="hover:text-brand-accent transition">Trajectory</a>
-        <a href="#flagships" class="hover:text-brand-accent transition">Flagships</a>
-        <a href="#research" class="hover:text-brand-accent transition">Research</a>
-        <a href="#provenance" class="hover:text-brand-accent transition">Provenance</a>
-        <a href="#stack" class="hover:text-brand-accent transition">Tech Stack</a>
+      <nav class="hidden md:flex items-center gap-7 text-xs font-semibold text-paper-inkSecondary">
+        <a href="#growth" class="hover:text-paper-cobalt transition">Trajectory</a>
+        <a href="#flagships" class="hover:text-paper-cobalt transition">Flagships</a>
+        <a href="#research" class="hover:text-paper-cobalt transition">Research</a>
+        <a href="#provenance" class="hover:text-paper-cobalt transition">Provenance</a>
+        <a href="#stack" class="hover:text-paper-cobalt transition">Tech Stack</a>
       </nav>
 
       <!-- Action Buttons -->
       <div class="flex items-center gap-3">
-        <a href="https://augmencord.com" target="_blank" rel="noopener" class="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold px-3.5 py-1.5 rounded-full bg-brand-card hover:bg-brand-cardHover border border-brand-border hover:border-brand-accent text-brand-accent transition shadow-sm">
+        <a href="https://augmencord.com" target="_blank" rel="noopener" class="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold px-3.5 py-1.5 rounded-full bg-white hover:bg-zinc-50 border border-paper-border hover:border-zinc-400 text-paper-ink transition shadow-sm">
           <span>Augmencord Studio</span>
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          <svg class="w-3.5 h-3.5 text-paper-cobalt" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
         </a>
-        <a href="https://github.com/Augmencord" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-xs font-semibold px-3.5 py-1.5 rounded-full bg-brand-accent hover:bg-sky-300 text-brand-base transition shadow-md shadow-brand-accent/20">
+        <a href="https://github.com/Augmencord" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-xs font-semibold px-3.5 py-1.5 rounded-full bg-paper-ink hover:bg-zinc-800 text-white transition shadow-sm">
           <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
           <span>GitHub</span>
         </a>
@@ -159,123 +134,123 @@
   </header>
 
   <!-- Hero Section -->
-  <section id="hero" class="pt-36 pb-20 px-6 max-w-6xl mx-auto text-center md:text-left">
-    <div class="flex flex-col md:flex-row items-center justify-between gap-12">
-      <div class="max-w-3xl">
+  <section id="hero" class="pt-32 pb-16 px-6 max-w-6xl mx-auto">
+    <div class="flex flex-col md:flex-row items-start justify-between gap-12">
+      <div class="max-w-2xl">
         <!-- Credential Badges Ribbon -->
-        <div class="flex flex-wrap items-center justify-center md:justify-start gap-2.5 mb-6">
-          <span class="badge-pill">
-            <span class="w-1.5 h-1.5 rounded-full bg-brand-emerald animate-pulse"></span>
+        <div class="flex flex-wrap items-center gap-2 mb-6">
+          <span class="badge-tag">
+            <span class="w-1.5 h-1.5 rounded-full bg-paper-emerald animate-pulse"></span>
             AUTONOMOUS SYSTEMS ARCHITECT
           </span>
-          <a href="https://zenodo.org/records/21814348" target="_blank" rel="noopener" class="badge-pill hover:border-brand-accent transition">
+          <a href="https://zenodo.org/records/21814348" target="_blank" rel="noopener" class="badge-tag hover:border-paper-cobalt hover:text-paper-cobalt transition">
             🎓 ZENODO DOI: 21814348
           </a>
-          <span class="badge-pill">
-            💻 28 REPOSITORIES SHIPPED
+          <span class="badge-tag font-mono">
+            28 REPOSITORIES SHIPPED
           </span>
         </div>
 
-        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white mb-6 leading-[1.08]">
-          Building <span class="text-gradient">Sovereign AI Systems</span>, Native IDEs & Vision CAS.
+        <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-paper-ink mb-6 leading-[1.1]">
+          Engineering Sovereign AI Systems, Native Desktop IDEs & Vision CAS.
         </h1>
 
-        <p class="text-base sm:text-xl text-brand-textSecondary leading-relaxed mb-8 max-w-2xl font-light">
-          Hi, I'm <strong class="text-white font-semibold">Avijeet Kumar</strong> — Founder & Lead Systems Architect at 
-          <span class="text-brand-accent font-medium">Augmencord Research Studio</span>. Creator of 
-          <a href="https://pypi.org/project/augagent/" class="underline decoration-brand-accent underline-offset-4 hover:text-white transition">augagent</a> (PyPI) and 
-          <a href="#flagships" class="underline decoration-brand-accent underline-offset-4 hover:text-white transition">Augmencord-OS</a>. 
-          I engineer deterministic multi-agent operating systems, code editors, and industrial computer vision.
+        <p class="text-base sm:text-lg text-paper-inkSecondary leading-relaxed mb-8 font-normal">
+          Hi, I'm <strong class="text-paper-ink font-semibold">Avijeet Kumar</strong> — Founder & Lead Systems Architect at 
+          <span class="text-paper-cobalt font-medium">Augmencord Research Studio</span>. Creator of 
+          <a href="https://pypi.org/project/augagent/" class="underline decoration-paper-cobalt underline-offset-4 hover:text-paper-ink transition">augagent</a> (PyPI) and 
+          <a href="#flagships" class="underline decoration-paper-cobalt underline-offset-4 hover:text-paper-ink transition">Augmencord-OS</a>. 
+          I build deterministic multi-agent state machines, developer code editors, and industrial proximity systems.
         </p>
 
         <!-- CTA Buttons -->
-        <div class="flex flex-wrap items-center justify-center md:justify-start gap-4">
-          <a href="#flagships" class="px-6 py-3 rounded-full bg-brand-accent text-brand-base font-semibold text-sm hover:bg-sky-300 transition shadow-lg shadow-brand-accent/25 flex items-center gap-2">
+        <div class="flex flex-wrap items-center gap-4">
+          <a href="#flagships" class="px-6 py-3 rounded-full bg-paper-ink text-white font-semibold text-xs tracking-wide hover:bg-zinc-800 transition shadow-sm flex items-center gap-2">
             <span>Explore Flagship Systems</span>
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
           </a>
-          <a href="https://augmencord.com" target="_blank" rel="noopener" class="px-6 py-3 rounded-full bg-brand-card hover:bg-brand-cardHover border border-brand-border hover:border-brand-accent text-white font-medium text-sm transition flex items-center gap-2">
-            <span>Visit Commercial Studio (augmencord.com)</span>
-            <svg class="w-4 h-4 text-brand-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          <a href="https://augmencord.com" target="_blank" rel="noopener" class="px-6 py-3 rounded-full bg-white hover:bg-zinc-50 border border-paper-border hover:border-zinc-400 text-paper-ink font-semibold text-xs tracking-wide transition flex items-center gap-2 shadow-sm">
+            <span>Visit Studio (augmencord.com)</span>
+            <svg class="w-3.5 h-3.5 text-paper-cobalt" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
           </a>
         </div>
       </div>
 
-      <!-- Quick Telemetry Card -->
-      <div class="w-full md:w-80 glass-panel rounded-2xl p-6 border border-brand-border text-left relative overflow-hidden shrink-0 shadow-2xl">
-        <div class="flex items-center justify-between pb-3 mb-4 border-b border-brand-border/60 text-xs font-mono text-brand-textMuted">
-          <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-brand-emerald animate-ping"></span>HOST TELEMETRY</span>
-          <span class="text-brand-accent">ONLINE</span>
+      <!-- Editorial Telemetry Box -->
+      <div class="w-full md:w-80 paper-card rounded-2xl p-6 text-left shrink-0">
+        <div class="flex items-center justify-between pb-3 mb-4 border-b border-paper-border text-xs font-mono text-paper-inkMuted">
+          <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-paper-emerald"></span>SYSTEM METRICS</span>
+          <span class="text-paper-emerald font-semibold">ACTIVE</span>
         </div>
         <div class="space-y-3 font-mono text-xs">
-          <div class="flex justify-between items-center py-1">
-            <span class="text-brand-textSecondary">TypeScript LOC:</span>
-            <span class="text-white font-bold">554,000+</span>
+          <div class="flex justify-between items-center py-0.5">
+            <span class="text-paper-inkSecondary">TypeScript LOC:</span>
+            <span class="text-paper-ink font-bold">554,000+</span>
           </div>
-          <div class="flex justify-between items-center py-1">
-            <span class="text-brand-textSecondary">Ecosystem Repos:</span>
-            <span class="text-brand-emerald font-bold">28 Active</span>
+          <div class="flex justify-between items-center py-0.5">
+            <span class="text-paper-inkSecondary">Ecosystem Repos:</span>
+            <span class="text-paper-ink font-bold">28 Active</span>
           </div>
-          <div class="flex justify-between items-center py-1">
-            <span class="text-brand-textSecondary">PyPI Release:</span>
-            <span class="text-brand-accent font-bold">augagent v1.3.0</span>
+          <div class="flex justify-between items-center py-0.5">
+            <span class="text-paper-inkSecondary">PyPI Release:</span>
+            <span class="text-paper-cobalt font-bold">augagent v1.3.0</span>
           </div>
-          <div class="flex justify-between items-center py-1">
-            <span class="text-brand-textSecondary">Academic Proof:</span>
-            <span class="text-brand-violet font-bold">Zenodo Peer-Rev</span>
+          <div class="flex justify-between items-center py-0.5">
+            <span class="text-paper-inkSecondary">Peer-Reviewed:</span>
+            <span class="text-paper-ink font-bold">Zenodo DOI</span>
           </div>
-          <div class="flex justify-between items-center py-1">
-            <span class="text-brand-textSecondary">Execution Target:</span>
-            <span class="text-amber-400 font-bold">0% Data Leakage</span>
+          <div class="flex justify-between items-center py-0.5">
+            <span class="text-paper-inkSecondary">Privacy Standard:</span>
+            <span class="text-paper-emerald font-bold">0% Data Leakage</span>
           </div>
         </div>
-        <div class="mt-4 pt-3 border-t border-brand-border/60 text-[11px] font-mono text-brand-textMuted flex items-center justify-between">
+        <div class="mt-4 pt-3 border-t border-paper-border text-[11px] font-mono text-paper-inkMuted flex items-center justify-between">
           <span>Physical Host: 8GB RAM</span>
-          <span class="text-brand-emerald">Optimized ✓</span>
+          <span class="text-paper-emerald font-semibold">Optimized ✓</span>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Section 1: The Trajectory & Growth Evolution (June 2026 -> October 2026) -->
-  <section id="growth" class="py-20 px-6 max-w-6xl mx-auto">
-    <div class="mb-14 text-center md:text-left">
-      <div class="inline-flex items-center gap-2 font-mono text-xs text-brand-accent tracking-widest uppercase mb-2">
-        <span>// CHRONOLOGICAL ENGINEERING TRAJECTORY</span>
+  <section id="growth" class="py-16 px-6 max-w-6xl mx-auto border-t border-paper-border">
+    <div class="mb-12">
+      <div class="font-mono text-xs text-paper-cobalt font-bold tracking-widest uppercase mb-1">
+        // CHRONOLOGICAL TRAJECTORY
       </div>
-      <h2 class="text-3xl md:text-4xl font-extrabold text-white tracking-tight">The 4-Month Velocity & Growth</h2>
-      <p class="text-brand-textSecondary text-sm max-w-2xl mt-2 leading-relaxed">
+      <h2 class="text-2xl md:text-3xl font-extrabold text-paper-ink tracking-tight">The 4-Month Velocity & Growth</h2>
+      <p class="text-paper-inkSecondary text-sm max-w-2xl mt-1 leading-relaxed">
         From foundational Python prototypes in June 2026 to shipping a 554,000-line enterprise operating system, custom desktop IDE, and industrial mining safety systems by October 2026.
       </p>
     </div>
 
-    <!-- Timeline Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-5 gap-4 relative">
+    <!-- Editorial Timeline Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
       <!-- Month 1: June 2026 -->
-      <div class="glass-panel p-5 rounded-2xl flex flex-col justify-between border-t-2 border-t-slate-500">
+      <div class="paper-card p-5 rounded-xl flex flex-col justify-between border-t-4 border-t-zinc-400">
         <div>
-          <span class="font-mono text-xs text-brand-textMuted font-bold block mb-1">01 · JUNE 2026</span>
-          <h3 class="text-base font-bold text-white mb-2">Genesis & Foundations</h3>
-          <p class="text-xs text-brand-textSecondary leading-relaxed mb-3">
+          <span class="font-mono text-[11px] text-paper-inkMuted font-bold block mb-1">01 · JUNE 2026</span>
+          <h3 class="text-sm font-bold text-paper-ink mb-1">Genesis & Foundations</h3>
+          <p class="text-xs text-paper-inkSecondary leading-relaxed mb-3">
             Explored standalone Flask web applications, ReAct prompt chains, and logged foundational agent design decisions in architecture blueprints.
           </p>
         </div>
-        <div class="text-[11px] font-mono text-brand-accent/80 pt-2 border-t border-brand-border/40">
+        <div class="text-[11px] font-mono text-zinc-600 pt-2 border-t border-paper-border">
           • augmencord-vibepro1<br>
           • storygen-learning
         </div>
       </div>
 
       <!-- Month 2: July 2026 -->
-      <div class="glass-panel p-5 rounded-2xl flex flex-col justify-between border-t-2 border-t-sky-500">
+      <div class="paper-card p-5 rounded-xl flex flex-col justify-between border-t-4 border-t-sky-500">
         <div>
-          <span class="font-mono text-xs text-brand-accent font-bold block mb-1">02 · JULY 2026</span>
-          <h3 class="text-base font-bold text-white mb-2">Tooling & PyPI Launch</h3>
-          <p class="text-xs text-brand-textSecondary leading-relaxed mb-3">
-            Built and published <code class="text-brand-accent">augagent</code> to PyPI. Engineered automated micro-lesson video compilers using Gemini Flash and Manim.
+          <span class="font-mono text-[11px] text-paper-cobalt font-bold block mb-1">02 · JULY 2026</span>
+          <h3 class="text-sm font-bold text-paper-ink mb-1">Tooling & PyPI Launch</h3>
+          <p class="text-xs text-paper-inkSecondary leading-relaxed mb-3">
+            Built and published <code class="font-semibold text-paper-cobalt">augagent</code> to PyPI. Engineered automated micro-lesson video compilers using Gemini Flash and Manim.
           </p>
         </div>
-        <div class="text-[11px] font-mono text-brand-accent/80 pt-2 border-t border-brand-border/40">
+        <div class="text-[11px] font-mono text-zinc-600 pt-2 border-t border-paper-border">
           • augagent (PyPI v1.0)<br>
           • cbse-video-generation<br>
           • helpdesk-ai
@@ -283,15 +258,15 @@
       </div>
 
       <!-- Month 3: August 2026 -->
-      <div class="glass-panel p-5 rounded-2xl flex flex-col justify-between border-t-2 border-t-emerald-500">
+      <div class="paper-card p-5 rounded-xl flex flex-col justify-between border-t-4 border-t-emerald-600">
         <div>
-          <span class="font-mono text-xs text-brand-emerald font-bold block mb-1">03 · AUGUST 2026</span>
-          <h3 class="text-base font-bold text-white mb-2">Industrial Vision & Edge</h3>
-          <p class="text-xs text-brand-textSecondary leading-relaxed mb-3">
+          <span class="font-mono text-[11px] text-paper-emerald font-bold block mb-1">03 · AUGUST 2026</span>
+          <h3 class="text-sm font-bold text-paper-ink mb-1">Industrial Vision & Edge</h3>
+          <p class="text-xs text-paper-inkSecondary leading-relaxed mb-3">
             Engineered HaloCAS for mining vehicle proximity detection (YOLOv8 + DeepFace). Deployed clinical OPD intake systems and fine-tuned Qwen 2.5 Coder.
           </p>
         </div>
-        <div class="text-[11px] font-mono text-brand-emerald/80 pt-2 border-t border-brand-border/40">
+        <div class="text-[11px] font-mono text-zinc-600 pt-2 border-t border-paper-border">
           • HaloCAS Mining CAS<br>
           • hakim-healthcare<br>
           • qwen_training (Ollama)
@@ -299,15 +274,15 @@
       </div>
 
       <!-- Month 4: September 2026 -->
-      <div class="glass-panel p-5 rounded-2xl flex flex-col justify-between border-t-2 border-t-indigo-500">
+      <div class="paper-card p-5 rounded-xl flex flex-col justify-between border-t-4 border-t-indigo-600">
         <div>
-          <span class="font-mono text-xs text-brand-violet font-bold block mb-1">04 · SEPTEMBER 2026</span>
-          <h3 class="text-base font-bold text-white mb-2">Desktop IDE & Hardening</h3>
-          <p class="text-xs text-brand-textSecondary leading-relaxed mb-3">
+          <span class="font-mono text-[11px] text-indigo-700 font-bold block mb-1">04 · SEPTEMBER 2026</span>
+          <h3 class="text-sm font-bold text-paper-ink mb-1">Desktop IDE & Hardening</h3>
+          <p class="text-xs text-paper-inkSecondary leading-relaxed mb-3">
             Architected AugHome IDE (Monaco + Electron + LSP). Hardened HaloCAS with lazy model proxies saving 350MB RAM. Shipped Augmencord HQ Business OS.
           </p>
         </div>
-        <div class="text-[11px] font-mono text-brand-violet/80 pt-2 border-t border-brand-border/40">
+        <div class="text-[11px] font-mono text-zinc-600 pt-2 border-t border-paper-border">
           • AugHome IDE<br>
           • halocas-production<br>
           • Project_Augmencord (M43)
@@ -315,15 +290,15 @@
       </div>
 
       <!-- Month 5: October 2026 -->
-      <div class="glass-panel p-5 rounded-2xl flex flex-col justify-between border-t-2 border-t-cyan-400 bg-sky-950/20 shadow-lg shadow-sky-500/10">
+      <div class="paper-card p-5 rounded-xl flex flex-col justify-between border-t-4 border-t-paper-cobalt bg-paper-cobaltLight/40">
         <div>
-          <span class="font-mono text-xs text-cyan-300 font-bold block mb-1">05 · OCTOBER 2026</span>
-          <h3 class="text-base font-bold text-white mb-2">Augmencord-OS</h3>
-          <p class="text-xs text-brand-textSecondary leading-relaxed mb-3">
+          <span class="font-mono text-[11px] text-paper-cobalt font-bold block mb-1">05 · OCTOBER 2026</span>
+          <h3 class="text-sm font-bold text-paper-ink mb-1">Augmencord-OS</h3>
+          <p class="text-xs text-paper-inkSecondary leading-relaxed mb-3">
             Culmination into flagship 554,000+ line TypeScript monorepo orchestrating cross-functional agent workforces (CTO, Eng, Business, Research) with Vitest suites.
           </p>
         </div>
-        <div class="text-[11px] font-mono text-cyan-300 pt-2 border-t border-brand-border/40 font-bold">
+        <div class="text-[11px] font-mono text-paper-cobalt pt-2 border-t border-paper-border font-semibold">
           • Augmencord-OS (Flagship)<br>
           • augagent v1.3.0<br>
           • augmencord.com Portal
@@ -333,106 +308,106 @@
   </section>
 
   <!-- Section 2: Flagship Systems Engineering (The "Big 4" Deep Dives) -->
-  <section id="flagships" class="py-20 px-6 max-w-6xl mx-auto">
-    <div class="mb-14 text-center md:text-left">
-      <div class="inline-flex items-center gap-2 font-mono text-xs text-brand-accent tracking-widest uppercase mb-2">
-        <span>// PRODUCTION CODEBASES</span>
+  <section id="flagships" class="py-16 px-6 max-w-6xl mx-auto border-t border-paper-border">
+    <div class="mb-12">
+      <div class="font-mono text-xs text-paper-cobalt font-bold tracking-widest uppercase mb-1">
+        // PRODUCTION SYSTEMS
       </div>
-      <h2 class="text-3xl md:text-4xl font-extrabold text-white tracking-tight">The Big 4 Systems Flagships</h2>
-      <p class="text-brand-textSecondary text-sm max-w-2xl mt-2 leading-relaxed">
+      <h2 class="text-2xl md:text-3xl font-extrabold text-paper-ink tracking-tight">The Big 4 Systems Flagships</h2>
+      <p class="text-paper-inkSecondary text-sm max-w-2xl mt-1 leading-relaxed">
         Production-ready architectures engineered for zero data leaks, physical memory limits, and enterprise rigor.
       </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
       <!-- Flagship 1: Augmencord-OS -->
-      <div class="glass-panel rounded-2xl p-7 flex flex-col justify-between relative group border-brand-border/80 hover:border-brand-accent">
+      <div class="paper-card rounded-2xl p-7 flex flex-col justify-between">
         <div>
-          <div class="flex items-center justify-between mb-4">
-            <span class="px-2.5 py-1 rounded text-[11px] font-mono font-bold bg-sky-500/10 text-brand-accent border border-sky-500/20">ENTERPRISE OS MONOREPO</span>
-            <span class="text-xs font-mono text-brand-emerald font-semibold">554,000+ LOC TS</span>
+          <div class="flex items-center justify-between mb-3">
+            <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold bg-zinc-100 text-zinc-800 border border-zinc-200">ENTERPRISE OS MONOREPO</span>
+            <span class="text-xs font-mono text-paper-emerald font-semibold">554,000+ LOC TS</span>
           </div>
-          <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-brand-accent transition">Augmencord-OS</h3>
-          <p class="text-sm text-brand-textSecondary leading-relaxed mb-5">
+          <h3 class="text-xl font-bold text-paper-ink mb-2">Augmencord-OS</h3>
+          <p class="text-xs text-paper-inkSecondary leading-relaxed mb-4">
             An enterprise-scale AI-assisted operating system monorepo engineered to run and orchestrate cross-functional autonomous AI workforces (CTO, Engineering Lead, Business Strategist, Research Agent) paired with human teams.
           </p>
-          <ul class="space-y-2 text-xs text-brand-textSecondary mb-6 font-mono">
-            <li class="flex items-center gap-2"><span class="text-brand-emerald">✓</span> <strong>apps/web</strong>: Next.js Presentation Workspace & Studio Dashboard</li>
-            <li class="flex items-center gap-2"><span class="text-brand-emerald">✓</span> <strong>apps/api</strong>: High-throughput Gateway & Route Controller</li>
-            <li class="flex items-center gap-2"><span class="text-brand-emerald">✓</span> <strong>packages/ai-engine</strong>: Sandboxed Zod Tool Engine & Unified LLM Client</li>
-            <li class="flex items-center gap-2"><span class="text-brand-emerald">✓</span> <strong>tests/integration</strong>: End-to-end Vitest vertical slice regression suites</li>
+          <ul class="space-y-1.5 text-xs text-paper-inkSecondary mb-5 font-mono">
+            <li class="flex items-center gap-2"><span class="text-paper-emerald font-bold">✓</span> <strong>apps/web</strong>: Next.js Presentation Workspace & Studio Dashboard</li>
+            <li class="flex items-center gap-2"><span class="text-paper-emerald font-bold">✓</span> <strong>apps/api</strong>: High-throughput Gateway & Route Controller</li>
+            <li class="flex items-center gap-2"><span class="text-paper-emerald font-bold">✓</span> <strong>packages/ai-engine</strong>: Sandboxed Zod Tool Engine & Unified LLM Client</li>
+            <li class="flex items-center gap-2"><span class="text-paper-emerald font-bold">✓</span> <strong>tests/integration</strong>: End-to-end Vitest vertical slice regression suites</li>
           </ul>
         </div>
-        <div class="pt-4 border-t border-brand-border/50 flex items-center justify-between">
+        <div class="pt-4 border-t border-paper-border flex items-center justify-between">
           <div class="flex gap-2">
-            <span class="px-2 py-0.5 rounded bg-brand-surface text-[10px] font-mono text-brand-textMuted border border-brand-border">TypeScript 5.4</span>
-            <span class="px-2 py-0.5 rounded bg-brand-surface text-[10px] font-mono text-brand-textMuted border border-brand-border">Next.js 14</span>
-            <span class="px-2 py-0.5 rounded bg-brand-surface text-[10px] font-mono text-brand-textMuted border border-brand-border">Vitest</span>
+            <span class="px-2 py-0.5 rounded bg-paper-cardMuted text-[10px] font-mono text-paper-inkMuted border border-paper-border">TypeScript 5.4</span>
+            <span class="px-2 py-0.5 rounded bg-paper-cardMuted text-[10px] font-mono text-paper-inkMuted border border-paper-border">Next.js 14</span>
+            <span class="px-2 py-0.5 rounded bg-paper-cardMuted text-[10px] font-mono text-paper-inkMuted border border-paper-border">Vitest</span>
           </div>
-          <span class="text-[11px] font-mono text-brand-textMuted flex items-center gap-1.5">
-            <span class="w-1.5 h-1.5 rounded-full bg-brand-emerald"></span>
+          <span class="text-[11px] font-mono text-paper-inkMuted flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-paper-emerald"></span>
             <span>Studio Core Architecture</span>
           </span>
         </div>
       </div>
 
       <!-- Flagship 2: AugHome IDE -->
-      <div class="glass-panel rounded-2xl p-7 flex flex-col justify-between relative group border-brand-border/80 hover:border-brand-accent">
+      <div class="paper-card rounded-2xl p-7 flex flex-col justify-between">
         <div>
-          <div class="flex items-center justify-between mb-4">
-            <span class="px-2.5 py-1 rounded text-[11px] font-mono font-bold bg-violet-500/10 text-brand-violet border border-violet-500/20">AI-NATIVE DESKTOP EDITOR</span>
-            <span class="text-xs font-mono text-brand-accent font-semibold">Electron + Monaco</span>
+          <div class="flex items-center justify-between mb-3">
+            <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold bg-zinc-100 text-zinc-800 border border-zinc-200">AI-NATIVE DESKTOP EDITOR</span>
+            <span class="text-xs font-mono text-paper-cobalt font-semibold">Electron + Monaco</span>
           </div>
-          <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-brand-accent transition">AugHome IDE</h3>
-          <p class="text-sm text-brand-textSecondary leading-relaxed mb-5">
+          <h3 class="text-xl font-bold text-paper-ink mb-2">AugHome IDE</h3>
+          <p class="text-xs text-paper-inkSecondary leading-relaxed mb-4">
             A modern, extensible desktop code editor built from first principles for deep agent integration. Features an LSP integration bridge, Model Context Protocol (MCP) extensions, and inline agentic code completion.
           </p>
-          <ul class="space-y-2 text-xs text-brand-textSecondary mb-6 font-mono">
-            <li class="flex items-center gap-2"><span class="text-brand-emerald">✓</span> <strong>Language Server Protocol</strong>: Multi-language LSP subprocess bridge</li>
-            <li class="flex items-center gap-2"><span class="text-brand-emerald">✓</span> <strong>Model Context Protocol (MCP)</strong>: Modular extensibility system</li>
-            <li class="flex items-center gap-2"><span class="text-brand-emerald">✓</span> <strong>Inline Code Completion</strong>: Fill-In-the-Middle (FIM) reasoning</li>
-            <li class="flex items-center gap-2"><span class="text-brand-emerald">✓</span> <strong>Local Execution</strong>: Powered by local <code class="text-brand-accent">augagent</code> daemon</li>
+          <ul class="space-y-1.5 text-xs text-paper-inkSecondary mb-5 font-mono">
+            <li class="flex items-center gap-2"><span class="text-paper-emerald font-bold">✓</span> <strong>Language Server Protocol</strong>: Multi-language LSP subprocess bridge</li>
+            <li class="flex items-center gap-2"><span class="text-paper-emerald font-bold">✓</span> <strong>Model Context Protocol (MCP)</strong>: Modular extensibility system</li>
+            <li class="flex items-center gap-2"><span class="text-paper-emerald font-bold">✓</span> <strong>Inline Code Completion</strong>: Fill-In-the-Middle (FIM) reasoning</li>
+            <li class="flex items-center gap-2"><span class="text-paper-emerald font-bold">✓</span> <strong>Local Execution</strong>: Powered by local <code class="text-paper-cobalt">augagent</code> daemon</li>
           </ul>
         </div>
-        <div class="pt-4 border-t border-brand-border/50 flex items-center justify-between">
+        <div class="pt-4 border-t border-paper-border flex items-center justify-between">
           <div class="flex gap-2">
-            <span class="px-2 py-0.5 rounded bg-brand-surface text-[10px] font-mono text-brand-textMuted border border-brand-border">Electron</span>
-            <span class="px-2 py-0.5 rounded bg-brand-surface text-[10px] font-mono text-brand-textMuted border border-brand-border">Monaco Core</span>
-            <span class="px-2 py-0.5 rounded bg-brand-surface text-[10px] font-mono text-brand-textMuted border border-brand-border">FastAPI</span>
+            <span class="px-2 py-0.5 rounded bg-paper-cardMuted text-[10px] font-mono text-paper-inkMuted border border-paper-border">Electron</span>
+            <span class="px-2 py-0.5 rounded bg-paper-cardMuted text-[10px] font-mono text-paper-inkMuted border border-paper-border">Monaco Core</span>
+            <span class="px-2 py-0.5 rounded bg-paper-cardMuted text-[10px] font-mono text-paper-inkMuted border border-paper-border">FastAPI</span>
           </div>
-          <span class="text-[11px] font-mono text-brand-textMuted flex items-center gap-1.5">
-            <span class="w-1.5 h-1.5 rounded-full bg-brand-violet"></span>
+          <span class="text-[11px] font-mono text-paper-inkMuted flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-indigo-600"></span>
             <span>Studio Desktop Runtime</span>
           </span>
         </div>
       </div>
 
       <!-- Flagship 3: augagent on PyPI -->
-      <div class="glass-panel rounded-2xl p-7 flex flex-col justify-between relative group border-brand-border/80 hover:border-brand-accent">
+      <div class="paper-card rounded-2xl p-7 flex flex-col justify-between">
         <div>
-          <div class="flex items-center justify-between mb-4">
-            <span class="px-2.5 py-1 rounded text-[11px] font-mono font-bold bg-emerald-500/10 text-brand-emerald border border-emerald-500/20">PUBLISHED PYPI PACKAGE</span>
-            <span class="text-xs font-mono text-brand-emerald font-semibold">pip install augagent</span>
+          <div class="flex items-center justify-between mb-3">
+            <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold bg-emerald-50 text-paper-emerald border border-emerald-200">PUBLISHED PYPI PACKAGE</span>
+            <span class="text-xs font-mono text-paper-emerald font-semibold">pip install augagent</span>
           </div>
-          <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-brand-accent transition">augagent (v1.3.0)</h3>
-          <p class="text-sm text-brand-textSecondary leading-relaxed mb-5">
+          <h3 class="text-xl font-bold text-paper-ink mb-2">augagent (v1.3.0)</h3>
+          <p class="text-xs text-paper-inkSecondary leading-relaxed mb-4">
             A lightweight, deterministic autonomous ReAct agent framework published to the Python Package Index. Engineered with strict Pydantic 2.0 type safety, ChromaDB vector memory, and zero third-party wrapper bloat.
           </p>
-          <ul class="space-y-2 text-xs text-brand-textSecondary mb-6 font-mono">
-            <li class="flex items-center gap-2"><span class="text-brand-emerald">✓</span> <strong>Deterministic State Loops</strong>: Pure ReAct task execution with zero drift</li>
-            <li class="flex items-center gap-2"><span class="text-brand-emerald">✓</span> <strong>Type-Safe Schemas</strong>: 100% Pydantic runtime contract validation</li>
-            <li class="flex items-center gap-2"><span class="text-brand-emerald">✓</span> <strong>ChromaDB Integration</strong>: Persistent semantic vector retrieval</li>
-            <li class="flex items-center gap-2"><span class="text-brand-emerald">✓</span> <strong>Native Automation</strong>: Built-in code search and Git operation tools</li>
+          <ul class="space-y-1.5 text-xs text-paper-inkSecondary mb-5 font-mono">
+            <li class="flex items-center gap-2"><span class="text-paper-emerald font-bold">✓</span> <strong>Deterministic State Loops</strong>: Pure ReAct task execution with zero drift</li>
+            <li class="flex items-center gap-2"><span class="text-paper-emerald font-bold">✓</span> <strong>Type-Safe Schemas</strong>: 100% Pydantic runtime contract validation</li>
+            <li class="flex items-center gap-2"><span class="text-paper-emerald font-bold">✓</span> <strong>ChromaDB Integration</strong>: Persistent semantic vector retrieval</li>
+            <li class="flex items-center gap-2"><span class="text-paper-emerald font-bold">✓</span> <strong>Native Automation</strong>: Built-in code search and Git operation tools</li>
           </ul>
         </div>
-        <div class="pt-4 border-t border-brand-border/50 flex items-center justify-between">
+        <div class="pt-4 border-t border-paper-border flex items-center justify-between">
           <div class="flex gap-2">
-            <span class="px-2 py-0.5 rounded bg-brand-surface text-[10px] font-mono text-brand-textMuted border border-brand-border">Python 3.10+</span>
-            <span class="px-2 py-0.5 rounded bg-brand-surface text-[10px] font-mono text-brand-textMuted border border-brand-border">Pydantic 2.0</span>
-            <span class="px-2 py-0.5 rounded bg-brand-surface text-[10px] font-mono text-brand-textMuted border border-brand-border">ChromaDB</span>
+            <span class="px-2 py-0.5 rounded bg-paper-cardMuted text-[10px] font-mono text-paper-inkMuted border border-paper-border">Python 3.10+</span>
+            <span class="px-2 py-0.5 rounded bg-paper-cardMuted text-[10px] font-mono text-paper-inkMuted border border-paper-border">Pydantic 2.0</span>
+            <span class="px-2 py-0.5 rounded bg-paper-cardMuted text-[10px] font-mono text-paper-inkMuted border border-paper-border">ChromaDB</span>
           </div>
-          <a href="https://pypi.org/project/augagent/" target="_blank" rel="noopener" class="text-xs font-semibold text-brand-accent hover:text-white flex items-center gap-1">
+          <a href="https://pypi.org/project/augagent/" target="_blank" rel="noopener" class="text-xs font-semibold text-paper-cobalt hover:underline flex items-center gap-1">
             <span>View on PyPI</span>
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
           </a>
@@ -440,30 +415,30 @@
       </div>
 
       <!-- Flagship 4: HaloCAS (Production) -->
-      <div class="glass-panel rounded-2xl p-7 flex flex-col justify-between relative group border-brand-border/80 hover:border-brand-accent">
+      <div class="paper-card rounded-2xl p-7 flex flex-col justify-between">
         <div>
-          <div class="flex items-center justify-between mb-4">
-            <span class="px-2.5 py-1 rounded text-[11px] font-mono font-bold bg-amber-500/10 text-amber-400 border border-amber-500/20">INDUSTRIAL COMPUTER VISION</span>
-            <span class="text-xs font-mono text-brand-accent font-semibold">CAS / PDS Mining</span>
+          <div class="flex items-center justify-between mb-3">
+            <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold bg-amber-50 text-paper-amber border border-amber-200">INDUSTRIAL COMPUTER VISION</span>
+            <span class="text-xs font-mono text-paper-ink font-semibold">CAS / PDS Mining</span>
           </div>
-          <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-brand-accent transition">HaloCAS (Production)</h3>
-          <p class="text-sm text-brand-textSecondary leading-relaxed mb-5">
+          <h3 class="text-xl font-bold text-paper-ink mb-2">HaloCAS (Production)</h3>
+          <p class="text-xs text-paper-inkSecondary leading-relaxed mb-4">
             A real-time Collision Avoidance System (CAS) and Proximity Detection System (PDS) engineered for heavy surface and underground mining safety. Combines YOLOv8 machinery tracking with DeepFace biometrics.
           </p>
-          <ul class="space-y-2 text-xs text-brand-textSecondary mb-6 font-mono">
-            <li class="flex items-center gap-2"><span class="text-brand-emerald">✓</span> <strong>Spatial Proximity Detection</strong>: YOLOv8 neural tracking of workers and vehicles</li>
-            <li class="flex items-center gap-2"><span class="text-brand-emerald">✓</span> <strong>Biometric Verification</strong>: DeepFace (Facenet512) authorized operator recognition</li>
-            <li class="flex items-center gap-2"><span class="text-brand-emerald">✓</span> <strong>Lazy-Proxy Memory Safety</strong>: Eliminates 350MB TensorFlow allocation on import</li>
-            <li class="flex items-center gap-2"><span class="text-brand-emerald">✓</span> <strong>Telemetry Streaming</strong>: Real-time async WebSockets with supervisor alerts</li>
+          <ul class="space-y-1.5 text-xs text-paper-inkSecondary mb-5 font-mono">
+            <li class="flex items-center gap-2"><span class="text-paper-emerald font-bold">✓</span> <strong>Spatial Proximity Detection</strong>: YOLOv8 neural tracking of workers and vehicles</li>
+            <li class="flex items-center gap-2"><span class="text-paper-emerald font-bold">✓</span> <strong>Biometric Verification</strong>: DeepFace (Facenet512) authorized operator recognition</li>
+            <li class="flex items-center gap-2"><span class="text-paper-emerald font-bold">✓</span> <strong>Lazy-Proxy Memory Safety</strong>: Eliminates 350MB TensorFlow allocation on import</li>
+            <li class="flex items-center gap-2"><span class="text-paper-emerald font-bold">✓</span> <strong>Telemetry Streaming</strong>: Real-time async WebSockets with supervisor alerts</li>
           </ul>
         </div>
-        <div class="pt-4 border-t border-brand-border/50 flex items-center justify-between">
+        <div class="pt-4 border-t border-paper-border flex items-center justify-between">
           <div class="flex gap-2">
-            <span class="px-2 py-0.5 rounded bg-brand-surface text-[10px] font-mono text-brand-textMuted border border-brand-border">YOLOv8</span>
-            <span class="px-2 py-0.5 rounded bg-brand-surface text-[10px] font-mono text-brand-textMuted border border-brand-border">DeepFace</span>
-            <span class="px-2 py-0.5 rounded bg-brand-surface text-[10px] font-mono text-brand-textMuted border border-brand-border">WebSockets</span>
+            <span class="px-2 py-0.5 rounded bg-paper-cardMuted text-[10px] font-mono text-paper-inkMuted border border-paper-border">YOLOv8</span>
+            <span class="px-2 py-0.5 rounded bg-paper-cardMuted text-[10px] font-mono text-paper-inkMuted border border-paper-border">DeepFace</span>
+            <span class="px-2 py-0.5 rounded bg-paper-cardMuted text-[10px] font-mono text-paper-inkMuted border border-paper-border">WebSockets</span>
           </div>
-          <a href="https://github.com/Augmencord/halocas-production" target="_blank" rel="noopener" class="text-xs font-semibold text-brand-accent hover:text-white flex items-center gap-1">
+          <a href="https://github.com/Augmencord/halocas-production" target="_blank" rel="noopener" class="text-xs font-semibold text-paper-cobalt hover:underline flex items-center gap-1">
             <span>Inspect CAS Repository</span>
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
           </a>
@@ -474,140 +449,140 @@
   </section>
 
   <!-- Section 3: Peer-Reviewed Scientific Research -->
-  <section id="research" class="py-20 px-6 max-w-6xl mx-auto">
-    <div class="glass-panel rounded-3xl p-8 md:p-12 border-brand-border relative overflow-hidden">
+  <section id="research" class="py-16 px-6 max-w-6xl mx-auto border-t border-paper-border">
+    <div class="paper-card rounded-2xl p-8 md:p-10 border border-paper-border bg-gradient-to-br from-white to-paper-cardMuted">
       <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
         <div class="max-w-2xl">
-          <div class="flex items-center gap-2 mb-3">
-            <span class="text-xl">🎓</span>
-            <span class="font-mono text-xs text-brand-accent font-bold tracking-wider uppercase">PEER-REVIEWED PUBLICATION · CERN ZENODO</span>
+          <div class="flex items-center gap-2 mb-2">
+            <span class="text-lg">🎓</span>
+            <span class="font-mono text-xs text-paper-cobalt font-bold tracking-wider uppercase">PEER-REVIEWED PUBLICATION · CERN ZENODO</span>
           </div>
-          <h2 class="text-2xl md:text-3xl font-extrabold text-white mb-3">
+          <h2 class="text-2xl font-extrabold text-paper-ink mb-2">
             "Autonomous AI Systems Architecture"
           </h2>
-          <p class="text-sm text-brand-textSecondary leading-relaxed mb-6 font-light">
-            Permanent Digital Object Identifier: <strong class="text-white font-mono">10.5281/zenodo.21814348</strong>. Formalizes the theoretical foundations of cognitive state transitions, deterministic schema validation, zero-leak enterprise memory partitioning, and multi-agent coordination frameworks in production environments.
+          <p class="text-xs text-paper-inkSecondary leading-relaxed mb-5 font-normal">
+            Permanent Digital Object Identifier: <strong class="text-paper-ink font-mono">10.5281/zenodo.21814348</strong>. Formalizes the theoretical foundations of cognitive state transitions, deterministic schema validation, zero-leak enterprise memory partitioning, and multi-agent coordination frameworks in production environments.
           </p>
-          <div class="flex flex-wrap gap-4">
-            <a href="https://zenodo.org/records/21814348" target="_blank" rel="noopener" class="px-5 py-2.5 rounded-full bg-brand-accent text-brand-base font-semibold text-xs hover:bg-sky-300 transition shadow-md shadow-brand-accent/20 flex items-center gap-2">
+          <div class="flex flex-wrap gap-3">
+            <a href="https://zenodo.org/records/21814348" target="_blank" rel="noopener" class="px-4 py-2 rounded-full bg-paper-ink text-white font-semibold text-xs hover:bg-zinc-800 transition shadow-sm flex items-center gap-1.5">
               <span>Read Full Paper on Zenodo (DOI)</span>
               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
             </a>
-            <a href="https://github.com/Augmencord" target="_blank" rel="noopener" class="px-5 py-2.5 rounded-full bg-brand-card hover:bg-brand-cardHover border border-brand-border text-white text-xs font-medium transition">
-              <span>View Referenced Implementations</span>
+            <a href="https://github.com/Augmencord" target="_blank" rel="noopener" class="px-4 py-2 rounded-full bg-white hover:bg-zinc-50 border border-paper-border text-paper-ink text-xs font-semibold transition">
+              <span>View Code Implementations</span>
             </a>
           </div>
         </div>
 
-        <div class="w-full md:w-64 bg-brand-base/80 p-5 rounded-xl border border-brand-border/80 font-mono text-xs space-y-2 shrink-0">
-          <div class="text-[11px] text-brand-textMuted uppercase pb-2 border-b border-brand-border/40 font-bold">Citation Summary</div>
-          <div><span class="text-brand-textSecondary">Author:</span> <span class="text-white">Avijeet Kumar</span></div>
-          <div><span class="text-brand-textSecondary">Archive:</span> <span class="text-brand-accent">CERN / Zenodo</span></div>
-          <div><span class="text-brand-textSecondary">DOI:</span> <span class="text-brand-emerald">21814348</span></div>
-          <div><span class="text-brand-textSecondary">Focus:</span> <span class="text-brand-violet">Autonomous Systems</span></div>
+        <div class="w-full md:w-64 bg-white p-4 rounded-xl border border-paper-border font-mono text-xs space-y-1.5 shrink-0 shadow-sm">
+          <div class="text-[10px] text-paper-inkMuted uppercase pb-1.5 border-b border-paper-border font-bold">Citation Summary</div>
+          <div><span class="text-paper-inkSecondary">Author:</span> <span class="text-paper-ink font-semibold">Avijeet Kumar</span></div>
+          <div><span class="text-paper-inkSecondary">Archive:</span> <span class="text-paper-cobalt font-semibold">CERN / Zenodo</span></div>
+          <div><span class="text-paper-inkSecondary">DOI:</span> <span class="text-paper-emerald font-semibold">21814348</span></div>
+          <div><span class="text-paper-inkSecondary">Focus:</span> <span class="text-paper-ink font-semibold">Autonomous Systems</span></div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Section 4: Operational Provenance & Systems Engineering Track Record -->
-  <section id="provenance" class="py-20 px-6 max-w-6xl mx-auto">
-    <div class="mb-14 text-center md:text-left">
-      <div class="inline-flex items-center gap-2 font-mono text-xs text-brand-accent tracking-widest uppercase mb-2">
-        <span>// ROOT CAUSE ANALYSIS & SYSTEMS BACKGROUND</span>
+  <section id="provenance" class="py-16 px-6 max-w-6xl mx-auto border-t border-paper-border">
+    <div class="mb-12">
+      <div class="font-mono text-xs text-paper-cobalt font-bold tracking-widest uppercase mb-1">
+        // ROOT CAUSE ANALYSIS & SYSTEMS BACKGROUND
       </div>
-      <h2 class="text-3xl md:text-4xl font-extrabold text-white tracking-tight">Operational & Engineering Provenance</h2>
-      <p class="text-brand-textSecondary text-sm max-w-2xl mt-2 leading-relaxed">
+      <h2 class="text-2xl md:text-3xl font-extrabold text-paper-ink tracking-tight">Operational & Engineering Provenance</h2>
+      <p class="text-paper-inkSecondary text-sm max-w-2xl mt-1 leading-relaxed">
         Real systems competence is forged by understanding human friction before writing automated state loops.
       </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
 
       <!-- Cuemath Operations -->
-      <div class="glass-panel p-6 rounded-2xl border-brand-border">
-        <div class="flex items-center justify-between mb-2">
-          <h3 class="text-lg font-bold text-white">Teacher Captain (Operations Manager)</h3>
-          <span class="text-xs font-mono text-brand-textMuted">2022</span>
+      <div class="paper-card p-6 rounded-xl">
+        <div class="flex items-center justify-between mb-1">
+          <h3 class="text-base font-bold text-paper-ink">Teacher Captain (Operations Manager)</h3>
+          <span class="text-xs font-mono text-paper-inkMuted">2022</span>
         </div>
-        <p class="text-xs font-semibold text-brand-accent mb-3">Cuemath (Cue Learn Pvt Ltd)</p>
-        <p class="text-xs text-brand-textSecondary leading-relaxed mb-4">
+        <p class="text-xs font-semibold text-paper-cobalt mb-2">Cuemath (Cue Learn Pvt Ltd)</p>
+        <p class="text-xs text-paper-inkSecondary leading-relaxed mb-3">
           Directed operations and session quality audits for Cuemath Plus pilot international tutors. Performed continuous <strong>Root Cause Analysis (RCA)</strong> on customer churn cases, mapping user churn triggers directly to training interventions across two international teams (40 tutors).
         </p>
-        <div class="text-[11px] font-mono text-brand-emerald">Key Impact: Data-driven churn diagnosis & tutor performance scaling.</div>
+        <div class="text-[11px] font-mono text-paper-emerald font-semibold">Key Impact: Data-driven churn diagnosis & tutor performance scaling.</div>
       </div>
 
       <!-- Tripyog -->
-      <div class="glass-panel p-6 rounded-2xl border-brand-border">
-        <div class="flex items-center justify-between mb-2">
-          <h3 class="text-lg font-bold text-white">Deep Learning Researcher & Talent Lead</h3>
-          <span class="text-xs font-mono text-brand-textMuted">2023 – 2025</span>
+      <div class="paper-card p-6 rounded-xl">
+        <div class="flex items-center justify-between mb-1">
+          <h3 class="text-base font-bold text-paper-ink">Deep Learning Researcher & Talent Lead</h3>
+          <span class="text-xs font-mono text-paper-inkMuted">2023 – 2025</span>
         </div>
-        <p class="text-xs font-semibold text-brand-accent mb-3">Tripyog</p>
-        <p class="text-xs text-brand-textSecondary leading-relaxed mb-4">
+        <p class="text-xs font-semibold text-paper-cobalt mb-2">Tripyog</p>
+        <p class="text-xs text-paper-inkSecondary leading-relaxed mb-3">
           Engineered conversational AI assistant prototypes for customer inquiry resolution. Led technical and business talent acquisition drives virtually and on-campus at <strong>IIM Ranchi</strong>, screening over 200 candidates.
         </p>
-        <div class="text-[11px] font-mono text-brand-emerald">Key Impact: Conversational AI prompt loops & talent pipeline scaling.</div>
+        <div class="text-[11px] font-mono text-paper-emerald font-semibold">Key Impact: Conversational AI prompt loops & talent pipeline scaling.</div>
       </div>
 
       <!-- Stayqrious -->
-      <div class="glass-panel p-6 rounded-2xl border-brand-border">
-        <div class="flex items-center justify-between mb-2">
-          <h3 class="text-lg font-bold text-white">Senior Learning Coach (Team Lead)</h3>
-          <span class="text-xs font-mono text-brand-textMuted">2021 – 2022</span>
+      <div class="paper-card p-6 rounded-xl">
+        <div class="flex items-center justify-between mb-1">
+          <h3 class="text-base font-bold text-paper-ink">Senior Learning Coach (Team Lead)</h3>
+          <span class="text-xs font-mono text-paper-inkMuted">2021 – 2022</span>
         </div>
-        <p class="text-xs font-semibold text-brand-accent mb-3">Stayqrious India Pvt Ltd</p>
-        <p class="text-xs text-brand-textSecondary leading-relaxed mb-4">
+        <p class="text-xs font-semibold text-paper-cobalt mb-2">Stayqrious India Pvt Ltd</p>
+        <p class="text-xs text-paper-inkSecondary leading-relaxed mb-3">
           Led a high-performing cohort of 8 learning coaches; managed stand-ups, weekly business updates (BAU), and one-on-one evaluations. Partnered directly with the Head of Classroom Programs to align instructional goals.
         </p>
-        <div class="text-[11px] font-mono text-brand-emerald">Key Impact: Agile team management & cohort quality governance.</div>
+        <div class="text-[11px] font-mono text-paper-emerald font-semibold">Key Impact: Agile team management & cohort quality governance.</div>
       </div>
 
       <!-- Wipro -->
-      <div class="glass-panel p-6 rounded-2xl border-brand-border">
-        <div class="flex items-center justify-between mb-2">
-          <h3 class="text-lg font-bold text-white">Associate (L1 Escalations & Network Support)</h3>
-          <span class="text-xs font-mono text-brand-textMuted">2016 – 2017</span>
+      <div class="paper-card p-6 rounded-xl">
+        <div class="flex items-center justify-between mb-1">
+          <h3 class="text-base font-bold text-paper-ink">Associate (L1 Escalations & Network Support)</h3>
+          <span class="text-xs font-mono text-paper-inkMuted">2016 – 2017</span>
         </div>
-        <p class="text-xs font-semibold text-brand-accent mb-3">Wipro</p>
-        <p class="text-xs text-brand-textSecondary leading-relaxed mb-4">
+        <p class="text-xs font-semibold text-paper-cobalt mb-2">Wipro</p>
+        <p class="text-xs text-paper-inkSecondary leading-relaxed mb-3">
           Supported UK enterprise client engineers resolving email, broadband, and network security incidents via BMC Remedy ticketing workflows. Delivered technical briefings for fiber optics conversions.
         </p>
-        <div class="text-[11px] font-mono text-brand-emerald">Key Impact: Enterprise SLA triage & network infrastructure incident handling.</div>
+        <div class="text-[11px] font-mono text-paper-emerald font-semibold">Key Impact: Enterprise SLA triage & network infrastructure incident handling.</div>
       </div>
 
     </div>
   </section>
 
   <!-- Section 5: Core Tech Stack & Education -->
-  <section id="stack" class="py-20 px-6 max-w-6xl mx-auto">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+  <section id="stack" class="py-16 px-6 max-w-6xl mx-auto border-t border-paper-border">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
       <!-- Technical Stack Matrix (2 cols) -->
-      <div class="md:col-span-2 glass-panel p-8 rounded-3xl border-brand-border">
-        <h2 class="text-2xl font-bold text-white mb-6">Core Engineering Matrix</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 text-xs">
+      <div class="md:col-span-2 paper-card p-7 rounded-2xl">
+        <h2 class="text-xl font-bold text-paper-ink mb-5">Core Engineering Matrix</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 text-xs">
           <div>
-            <h4 class="font-mono font-bold text-brand-accent uppercase mb-2">Systems & Languages</h4>
-            <p class="text-brand-textSecondary leading-relaxed">
+            <h4 class="font-mono font-bold text-paper-cobalt uppercase mb-1.5">Systems & Languages</h4>
+            <p class="text-paper-inkSecondary leading-relaxed">
               TypeScript (5.4+), Python (3.10–3.12), JavaScript (ESNext), Rust, Dart, Shell, PowerShell, SQL
             </p>
           </div>
           <div>
-            <h4 class="font-mono font-bold text-brand-accent uppercase mb-2">Agentic Frameworks & Protocols</h4>
-            <p class="text-brand-textSecondary leading-relaxed">
+            <h4 class="font-mono font-bold text-paper-cobalt uppercase mb-1.5">Agentic Frameworks & Protocols</h4>
+            <p class="text-paper-inkSecondary leading-relaxed">
               Autonomous ReAct, Model Context Protocol (MCP), Language Server Protocol (LSP), Pydantic 2.0, Zod, FIM Completion
             </p>
           </div>
           <div>
-            <h4 class="font-mono font-bold text-brand-accent uppercase mb-2">Computer Vision & AI/ML</h4>
-            <p class="text-brand-textSecondary leading-relaxed">
+            <h4 class="font-mono font-bold text-paper-cobalt uppercase mb-1.5">Computer Vision & AI/ML</h4>
+            <p class="text-paper-inkSecondary leading-relaxed">
               YOLOv8, DeepFace (Facenet512), PyTorch, Hugging Face Transformers, Ollama (Qwen 2.5 Coder 7B), ChromaDB
             </p>
           </div>
           <div>
-            <h4 class="font-mono font-bold text-brand-accent uppercase mb-2">Fullstack, Desktop & DevOps</h4>
-            <p class="text-brand-textSecondary leading-relaxed">
+            <h4 class="font-mono font-bold text-paper-cobalt uppercase mb-1.5">Fullstack, Desktop & DevOps</h4>
+            <p class="text-paper-inkSecondary leading-relaxed">
               Next.js 14, Electron, Monaco Editor, FastAPI, NestJS, Docker, Alembic, PostgreSQL, Vitest, WebSockets
             </p>
           </div>
@@ -615,23 +590,23 @@
       </div>
 
       <!-- Education & Academic Foundation (1 col) -->
-      <div class="glass-panel p-8 rounded-3xl border-brand-border flex flex-col justify-between">
+      <div class="paper-card p-7 rounded-2xl flex flex-col justify-between">
         <div>
-          <h2 class="text-2xl font-bold text-white mb-6">Education</h2>
-          <div class="space-y-5 text-xs">
-            <div class="pb-4 border-b border-brand-border/50">
-              <span class="font-mono text-brand-textMuted">2012 – 2016</span>
-              <h4 class="text-sm font-bold text-white mt-1">Dr. B.C. Roy Engineering College</h4>
-              <p class="text-brand-textSecondary">B.Tech / Equivalent — CGPA: <strong>7.75 / 10.0</strong> (WBUT)</p>
+          <h2 class="text-xl font-bold text-paper-ink mb-5">Education</h2>
+          <div class="space-y-4 text-xs">
+            <div class="pb-3 border-b border-paper-border">
+              <span class="font-mono text-paper-inkMuted text-[11px]">2012 – 2016</span>
+              <h4 class="text-xs font-bold text-paper-ink mt-0.5">Dr. B.C. Roy Engineering College</h4>
+              <p class="text-paper-inkSecondary">B.Tech / Equivalent — CGPA: <strong>7.75 / 10.0</strong> (WBUT)</p>
             </div>
             <div>
-              <span class="font-mono text-brand-textMuted">2012</span>
-              <h4 class="text-sm font-bold text-white mt-1">DAV Public School, Koyla Nagar</h4>
-              <p class="text-brand-textSecondary">AISSCE High Secondary — Score: <strong>93.20 / 100</strong></p>
+              <span class="font-mono text-paper-inkMuted text-[11px]">2012</span>
+              <h4 class="text-xs font-bold text-paper-ink mt-0.5">DAV Public School, Koyla Nagar</h4>
+              <p class="text-paper-inkSecondary">AISSCE High Secondary — Score: <strong>93.20 / 100</strong></p>
             </div>
           </div>
         </div>
-        <div class="pt-4 mt-6 border-t border-brand-border/50 text-[11px] font-mono text-brand-textMuted">
+        <div class="pt-3 mt-4 border-t border-paper-border text-[11px] font-mono text-paper-inkMuted">
           Augmencord Research Studio · Systems Lab
         </div>
       </div>
@@ -639,43 +614,43 @@
     </div>
   </section>
 
-  <!-- Section 6: Connect / Terminal Footer -->
-  <footer id="contact" class="py-20 px-6 border-t border-brand-border bg-brand-surface/60 relative">
-    <div class="max-w-5xl mx-auto text-center">
-      <div class="inline-flex items-center gap-2 badge-pill mb-4">
-        <span class="w-2 h-2 rounded-full bg-brand-emerald animate-ping"></span>
+  <!-- Section 6: Connect / Minimalist Editorial Footer -->
+  <footer id="contact" class="py-16 px-6 border-t border-paper-border bg-white text-center">
+    <div class="max-w-4xl mx-auto">
+      <div class="inline-flex items-center gap-2 badge-tag mb-3">
+        <span class="w-1.5 h-1.5 rounded-full bg-paper-emerald"></span>
         <span>OPEN FOR STRATEGIC RESEARCH & SYSTEMS COLLABORATION</span>
       </div>
-      <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-4">Let's Build Autonomous Systems</h2>
-      <p class="text-brand-textSecondary text-sm max-w-xl mx-auto mb-8 font-light leading-relaxed">
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-paper-ink mb-2">Let's Build Autonomous Systems</h2>
+      <p class="text-paper-inkSecondary text-xs sm:text-sm max-w-lg mx-auto mb-6 leading-relaxed font-normal">
         Whether you're exploring sovereign multi-agent infrastructure, AI-native desktop software, or production computer vision, let's connect.
       </p>
 
-      <!-- Contact Matrix -->
-      <div class="flex flex-wrap items-center justify-center gap-4 text-xs font-mono mb-12">
-        <a href="mailto:augmencord@gmail.com" class="px-4 py-2 rounded-lg bg-brand-card hover:bg-brand-cardHover border border-brand-border text-brand-accent transition">
+      <!-- Clean Contact Links -->
+      <div class="flex flex-wrap items-center justify-center gap-3 text-xs font-mono mb-10">
+        <a href="mailto:augmencord@gmail.com" class="px-3.5 py-1.5 rounded-full bg-paper-cardMuted hover:bg-zinc-200 border border-paper-border text-paper-ink transition">
           augmencord@gmail.com
         </a>
-        <a href="https://augmencord.com" target="_blank" rel="noopener" class="px-4 py-2 rounded-lg bg-brand-card hover:bg-brand-cardHover border border-brand-border text-white transition">
+        <a href="https://augmencord.com" target="_blank" rel="noopener" class="px-3.5 py-1.5 rounded-full bg-paper-cardMuted hover:bg-zinc-200 border border-paper-border text-paper-cobalt font-semibold transition">
           augmencord.com ↗
         </a>
-        <a href="https://github.com/Augmencord" target="_blank" rel="noopener" class="px-4 py-2 rounded-lg bg-brand-card hover:bg-brand-cardHover border border-brand-border text-white transition">
+        <a href="https://github.com/Augmencord" target="_blank" rel="noopener" class="px-3.5 py-1.5 rounded-full bg-paper-cardMuted hover:bg-zinc-200 border border-paper-border text-paper-ink transition">
           GitHub (28 Repos) ↗
         </a>
-        <a href="https://pypi.org/project/augagent/" target="_blank" rel="noopener" class="px-4 py-2 rounded-lg bg-brand-card hover:bg-brand-cardHover border border-brand-border text-brand-emerald transition">
+        <a href="https://pypi.org/project/augagent/" target="_blank" rel="noopener" class="px-3.5 py-1.5 rounded-full bg-paper-cardMuted hover:bg-zinc-200 border border-paper-border text-paper-emerald font-semibold transition">
           PyPI (augagent) ↗
         </a>
-        <a href="https://zenodo.org/records/21814348" target="_blank" rel="noopener" class="px-4 py-2 rounded-lg bg-brand-card hover:bg-brand-cardHover border border-brand-border text-brand-violet transition">
+        <a href="https://zenodo.org/records/21814348" target="_blank" rel="noopener" class="px-3.5 py-1.5 rounded-full bg-paper-cardMuted hover:bg-zinc-200 border border-paper-border text-paper-ink transition">
           Zenodo DOI ↗
         </a>
-        <a href="https://www.linkedin.com/in/avijeet-kumar-985660429/" target="_blank" rel="noopener" class="px-4 py-2 rounded-lg bg-brand-card hover:bg-brand-cardHover border border-brand-border text-sky-400 transition">
+        <a href="https://www.linkedin.com/in/avijeet-kumar-985660429/" target="_blank" rel="noopener" class="px-3.5 py-1.5 rounded-full bg-paper-cardMuted hover:bg-zinc-200 border border-paper-border text-paper-cobalt font-semibold transition">
           LinkedIn ↗
         </a>
       </div>
 
-      <div class="text-xs text-brand-textMuted font-mono">
+      <div class="text-[11px] text-paper-inkMuted font-mono">
         © 2026 Avijeet Kumar · Augmencord Research Studio.<br>
-        Built with modern web standards. Hosted on GitHub Pages.
+        Hosted on GitHub Pages.
       </div>
     </div>
   </footer>
